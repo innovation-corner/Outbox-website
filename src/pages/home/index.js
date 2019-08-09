@@ -8,11 +8,12 @@ import {
     Input,
     Button
 } from 'reactstrap';
-import TopNavBar from '../components/NavBar/index';
+import TopNavBar from '../../components/NavBar/index';
 import BackgroundSlideshow from 'react-background-slideshow';
 
-import image1 from '../assets/images/background-1.jpeg';
-import image2 from '../assets/images/background-2.jpeg';
+import image1 from '../../assets/images/background-1.jpeg';
+import image2 from '../../assets/images/background-2.jpeg';
+import './styles.scss';
 
 class Home extends Component {
     render() {
@@ -22,29 +23,31 @@ class Home extends Component {
                     <TopNavBar />
                     <Container className="main-body" fluid>
                         <Row className="first-row">
-                            <Col xs="12" sm="2" className="form-box">
+                            <Col xs="12" sm="3" className="form-box">
                                 <div className="form-header">
-                                    <h3>Sale your space</h3>
-                                    <p>Or select a folder</p>
+                                    <h3>Hello</h3>
+                                    <p>Sign in with your credentials or <br/>create a new account</p>
                                 </div>
                                 <Form className="form-content">
                                     <FormGroup>
-                                        <Input type="email" name="email" placeholder="Email to" />
+                                        <Input type="email" name="email" placeholder="Email address" />
                                     </FormGroup>
                                     <FormGroup>
-                                        <Input type="email" name="email" placeholder="Your email" />
-                                    </FormGroup>
-                                    <FormGroup>
-                                        <Input type="textarea" name="text" id="exampleText" placeholder="Message"/>
+                                        <Input type="password" name="email" placeholder="Password" />
                                     </FormGroup>
                                 </Form>
                                 <div className="form-footer">
-                                    <FormGroup>
-                                        <Button color="primary" disabled>Transfer</Button>
-                                    </FormGroup>
+                                    <Row>
+                                        <Col md="6">
+                                            <FormGroup>
+                                                <Button color="primary" disabled>Login</Button>
+                                            </FormGroup>
+                                        </Col>
+                                        <Col></Col>
+                                    </Row>
                                 </div>
                             </Col>
-                            <Col xs="12" sm="3"></Col>
+                            <Col xs="12" sm="4"></Col>
                             <Col xs="12" sm="4"></Col>
                         </Row>
                     </Container>

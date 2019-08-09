@@ -1,10 +1,13 @@
-.buttonGroup {
-    border: 0;
+.top {
+    float: right;
 
-    button {
-        // border-right: 1px solid #F4F6F7;
-        // border-top: 0;
-        background: #fff;
-        color: #000;
+    .buttonGroup {
+        border: 0;
+    
+        button {
+            background: #fff;
+            color: #000;
+        }
     }
 }
+

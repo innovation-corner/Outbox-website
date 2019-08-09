@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row, Col, Button, ButtonGroup } from 'reactstrap';
+import LogoImage from '../../assets/images/logo.png';
 import './index.scss';
 
 const TopNavBar = () => {
@@ -7,9 +8,9 @@ const TopNavBar = () => {
         <div>
             <Container fluid>
                 <Row>
-                    <Col xs="12" sm="6"></Col>
+                    <Col xs="12" sm="6"><img src={LogoImage} width="100" alt="logo" /></Col>
                     <Col xs="12" sm="6">
-                        <div className="pull-right">
+                        <div className="top">
                             <ButtonGroup className="buttonGroup">
                                 <Button>Help</Button>
                                 <Button>About</Button>
