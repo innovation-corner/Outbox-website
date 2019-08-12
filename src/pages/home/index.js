@@ -95,7 +95,7 @@ class Home extends Component {
                 </FormGroup>
                 <div className="form-footer">
                     <FormGroup>
-                        <Button color="primary" type="submit" disabled>Login</Button>
+                        <Button color="primary" type="submit" disabled>Sign Up</Button>
                     </FormGroup> 
                 </div>
             </Form>
