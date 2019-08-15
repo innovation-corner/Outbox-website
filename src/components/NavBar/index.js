@@ -13,7 +13,7 @@ const TopNavBar = () => {
                         <div className="top">
                             <ButtonGroup className="buttonGroup">
                                 <Button style={{borderLeft: 0}}>Help</Button>
-                                <Button>About</Button>
+                                <Button><a href="/web/">About</a></Button>
                                 <Button style={{borderRight: 0}}>Contact Us</Button>
                             </ButtonGroup>
                         </div>
