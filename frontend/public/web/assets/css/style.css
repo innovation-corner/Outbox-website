@@ -4912,9 +4912,9 @@ a.customer-use-case-card .cover-image.evbox {
 }
 
 a.customer-use-case-card .cover-image.shimano {
-    background-image: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, .65)), color-stop(35%, rgba(0, 0, 0, 0))), -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, .65)), color-stop(35%, rgba(0, 0, 0, 0))), url(tladyy.jpeg);
-    background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, .65), rgba(0, 0, 0, 0) 35%), -webkit-linear-gradient(rgba(0, 0, 0, .65), rgba(0, 0, 0, 0) 35%), url(/images/testimonial/cover-image-shimano-1.jpg);
-    background-image: linear-gradient(0deg, rgba(0, 0, 0, .65) 0, rgba(0, 0, 0, 0) 35%), linear-gradient(rgba(0, 0, 0, .65), rgba(0, 0, 0, 0) 35%), url(tladyy.jpeg)
+    background-image: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, .65)), color-stop(35%, rgba(0, 0, 0, 0))), -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, .65)), color-stop(35%, rgba(0, 0, 0, 0))), url(../images/tladyy.jpeg);
+    background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, .65), rgba(0, 0, 0, 0) 35%), -webkit-linear-gradient(rgba(0, 0, 0, .65), rgba(0, 0, 0, 0) 35%), url(../images/tladyy.jpeg);
+    background-image: linear-gradient(0deg, rgba(0, 0, 0, .65) 0, rgba(0, 0, 0, 0) 35%), linear-gradient(rgba(0, 0, 0, .65), rgba(0, 0, 0, 0) 35%), url(../images/tladyy.jpeg)
 }
 
 a.customer-use-case-card .cover-logo {

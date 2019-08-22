@@ -12,9 +12,9 @@ const TopNavBar = () => {
                     <Col xs="12" sm="6">
                         <div className="top">
                             <ButtonGroup className="buttonGroup">
-                                <Button style={{borderLeft: 0}}>Help</Button>
+                                <Button style={{borderLeft: 0}}><a href="/web/">Help</a></Button>
                                 <Button><a href="/web/">About</a></Button>
-                                <Button style={{borderRight: 0}}><a href="/web/pricing.html#contact-us">Contact Us</a></Button>
+                                <Button style={{borderRight: 0}}><a href="/web/pricing.html#contact">Contact Us</a></Button>
                             </ButtonGroup>
                         </div>
                     </Col>
