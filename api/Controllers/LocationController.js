@@ -68,6 +68,21 @@ module.exports = {
     }
   },
 
+  async viewLocation(req, res) {
+    try {
+      const { id } = req.params;
+      const reqLocation = await Location.findOne({ where: { id } });
+
+      if (!reqLocation) {
+        return res.status(400).json({ message: "invalid location" });
+      }
+
+      return res.status(200).json({ message: "location retrieved", reqLocation });
+    } catch (error) {
+      return res.status(400).json({ message: "An error occurred", error });
+    }
+  },
+
   async deleteLocation(req, res) {
     try {
       const { id } = req.params;
