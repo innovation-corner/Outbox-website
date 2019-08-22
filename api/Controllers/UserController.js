@@ -24,7 +24,7 @@ module.exports = {
         return result;
       };
 
-      const password = await generateCode(7)
+      const password = await generateCode(7);
 
       if (checkEmail) {
         return res.status(400).json({ message: "Email Exists" });
@@ -43,7 +43,7 @@ module.exports = {
 
       const user = await User.create(data);
 
-      const {name} = await Business.findOne({where:{id:businessId}})
+      const { name } = await Business.findOne({ where: { id: businessId } });
 
       const emailData = { email, password, name };
 
@@ -52,6 +52,49 @@ module.exports = {
       return res.status(200).json({ message: "User added", user });
     } catch (err) {
       return res.status(400).json({ message: "An error occurred", err });
+    }
+  },
+
+  async edit(req, res) {
+    try {
+      const { id } = req.params;
+      const data = req.body;
+
+      const reqUser = await User.findOne({ where: { id } });
+      if (!reqUser) {
+        return res.status(400).json({ message: "invalid selection" });
+      }
+
+      if (data.password) {
+        if (data.password.trim() === "") {
+          return res.status(400).json({ message: "invalid password" });
+        }
+      }
+
+      const updatedUser = await User.update(data, {
+        returning: true,
+        where: { id }
+      });
+
+      return res.status(200).json({ message: "user updated", updatedUser });
+    } catch (error) {
+      return res.status(400).json({ message: "An error occurred", error });
+    }
+  },
+
+  async delete(req, res) {
+    try {
+      const { id } = req.params;
+
+      const reqUser = await User.findOne({ where: { id } });
+      if (!reqUser) {
+        return res.status(400).json({ message: "invalid selection" });
+      }
+      await User.destroy({ where: { id } });
+
+      return res.status(200).json({ message: "user deleted" });
+    } catch (error) {
+      return res.status(400).json({ message: "An error occurred", error });
     }
   }
 };
