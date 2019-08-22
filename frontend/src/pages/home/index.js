@@ -89,7 +89,7 @@ class Home extends Component {
                         value={this.state.password}
                     />
                     <span
-                        className="fa fa-fw fa-eye field-icon toggle-password"
+                        className="fa fa-eye field-icon toggle-password"
                         onClick={this.showHidePassword}
                     />
                 </FormGroup>
@@ -130,7 +130,7 @@ class Home extends Component {
                         value={this.state.password}
                     />
                     <span
-                        className="fa fa-fw fa-eye field-icon toggle-password"
+                        className="fa fa-eye field-icon toggle-password"
                         onClick={this.showHidePassword}
                     />
                 </FormGroup>
