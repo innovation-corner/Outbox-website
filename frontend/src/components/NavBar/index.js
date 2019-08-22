@@ -14,7 +14,7 @@ const TopNavBar = () => {
                             <ButtonGroup className="buttonGroup">
                                 <Button style={{borderLeft: 0}}>Help</Button>
                                 <Button><a href="/web/">About</a></Button>
-                                <Button style={{borderRight: 0}}>Contact Us</Button>
+                                <Button style={{borderRight: 0}}><a href="/web/pricing.html#contact-us">Contact Us</a></Button>
                             </ButtonGroup>
                         </div>
                     </Col>
