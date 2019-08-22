@@ -1,25 +1,24 @@
 "use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("Users", {
+    return queryInterface.createTable("Desks", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      fullname: {
-        type: Sequelize.STRING
+      name: {
+        type: Sequelize.STRING,
+        allowNull: false
       },
-      password: {
-        type: Sequelize.STRING
+      amenities: {
+        type: Sequelize.BLOB
       },
-      email: {
-        type: Sequelize.STRING
+      capacity: {
+        type: Sequelize.INTEGER
       },
-      verificationCode: {
-        type: Sequelize.STRING
-      },
+
       businessId: {
         type: Sequelize.INTEGER,
         references: {
@@ -28,6 +27,7 @@ module.exports = {
           as: "businessId"
         }
       },
+
       locationId: {
         type: Sequelize.INTEGER,
         references: {
@@ -36,13 +36,7 @@ module.exports = {
           as: "locationId"
         }
       },
-      role: {
-        type: Sequelize.ENUM("systemAdmin", "subAdmin", "user"),
-        defaultValue: "user"
-      },
-      isVerified: {
-        type: Sequelize.BOOLEAN
-      },
+
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -54,6 +48,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("Users");
+    return queryInterface.dropTable("Desks");
   }
 };
