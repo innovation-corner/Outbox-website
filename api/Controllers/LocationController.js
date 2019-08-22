@@ -77,7 +77,9 @@ module.exports = {
         return res.status(400).json({ message: "invalid location" });
       }
 
-      return res.status(200).json({ message: "location retrieved", reqLocation });
+      return res
+        .status(200)
+        .json({ message: "location retrieved", reqLocation });
     } catch (error) {
       return res.status(400).json({ message: "An error occurred", error });
     }
@@ -97,6 +99,23 @@ module.exports = {
       });
 
       return res.status(200).json({ message: "location deleted" });
+    } catch (error) {
+      return res.status(400).json({ message: "An error occurred", error });
+    }
+  },
+
+  async viewUsers(req, res) {
+    try {
+      const { id } = req.params;
+      const reqLocation = await Location.findOne({ where: { id } });
+
+      if (!reqLocation) {
+        return res.status(400).json({ message: "invalid location" });
+      }
+
+      const users = await User.findAll({ where: { locationId: id } });
+
+      return res.status(200).json({ message: "users retrieved", users });
     } catch (error) {
       return res.status(400).json({ message: "An error occurred", error });
     }
