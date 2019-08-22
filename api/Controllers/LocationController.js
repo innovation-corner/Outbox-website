@@ -6,7 +6,7 @@ const Email = require("../Emails");
 module.exports = {
   async addLocation(req, res) {
     try {
-      const { name, info, contactNumber, contactEmail } = req.body;
+      const { name, info, contactNumber, contactEmail, admin } = req.body;
       const { businessId } = req.user;
 
       if (req.user.role !== "systemAdmin" && req.user.role !== "subAdmin") {
@@ -21,9 +21,69 @@ module.exports = {
       };
       const location = await Location.create(data);
 
+      if (admin) {
+        const userData = { locationId: location.id, role: "subAdmin" };
+        await User.update(userData, { returning: true, where: { id: admin } });
+      }
+
       return res.status(200).json({ message: "location added", location });
     } catch (err) {
       return res.status(400).json({ message: "An error occurred", err });
+    }
+  },
+
+  async viewAllBusinessLocations(req, res) {
+    try {
+      const { businessId } = req.user;
+
+      const locations = await Location.findAll({ where: { businessId } });
+      if (!locations) {
+        return res.status(400).json({ message: "No saved locations yet" });
+      }
+      return res
+        .status(200)
+        .json({ message: "locations retrieved", locations });
+    } catch (error) {
+      return res.status(400).json({ message: "An error occurred", error });
+    }
+  },
+
+  async editLocation(req, res) {
+    try {
+      const { id } = req.params;
+      const data = req.body;
+      const reqLocation = await Location.findOne({ where: { id } });
+
+      if (!reqLocation) {
+        return res.status(400).json({ message: "invalid location" });
+      }
+      const location = await Location.update(data, {
+        returning: true,
+        where: { id }
+      });
+
+      return res.status(200).json({ message: "location updated", location });
+    } catch (error) {
+      return res.status(400).json({ message: "An error occurred", error });
+    }
+  },
+
+  async deleteLocation(req, res) {
+    try {
+      const { id } = req.params;
+      const reqLocation = await Location.findOne({ where: { id } });
+
+      if (!reqLocation) {
+        return res.status(400).json({ message: "invalid location" });
+      }
+      await Location.destroy({
+        returning: true,
+        where: { id }
+      });
+
+      return res.status(200).json({ message: "location deleted" });
+    } catch (error) {
+      return res.status(400).json({ message: "An error occurred", error });
     }
   }
 };
