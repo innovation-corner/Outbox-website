@@ -1,7 +1,6 @@
 const { User } = require("../models/index");
 const { Business } = require("../models/index");
 const { Location } = require("../models/index");
-const Email = require("../Emails");
 
 module.exports = {
   async addLocation(req, res) {
