@@ -1,8 +1,11 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+<<<<<<< HEAD
 const jwt = require("./modules/auth.module");
 const {User} = require('./models')
+=======
+>>>>>>> ac606130bab03223aa3a155ebedac89d3095fbd3
 const passport = require("passport");
 
 require("./config/passport");
