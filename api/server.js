@@ -1,8 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const jwt = require("./modules/auth.module");
-const {User} = require('./models')
 const passport = require("passport");
 
 require("./config/passport");
