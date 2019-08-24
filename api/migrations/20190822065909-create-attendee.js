@@ -16,6 +16,9 @@ module.exports = {
           as: "user"
         }
       },
+      time: {
+        type: Sequelize.DATE
+      },
       bookingId: {
         type: Sequelize.INTEGER,
         references: {
