@@ -20,6 +20,10 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "locationId",
       onDelete: "CASCADE"
     });
+    Desk.hasMany(models.Booking, {
+      foreignKey: "deskId",
+      as: "bookings"
+    });
   };
   return Desk;
 };
