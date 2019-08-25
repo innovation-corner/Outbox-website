@@ -117,29 +117,63 @@ module.exports = {
 
   // for when we get a mail service and are able to send an email
   async resetLink(req, res) {
-    const { email } = req.body;
-    const user = await User.findOne({
-      email
-    });
-    if (!user) {
-      return res.status(400).json({ message: "invailid user" });
+    try {
+      const { email } = req.body;
+      const user = await User.findOne({
+        email
+      });
+
+      if (!user) {
+        return res.status(400).json({ message: "invailid user" });
+      }
+
+      const generateCode = (length, chars) => {
+        if (!chars) {
+          chars = "0123456789abcdefghijklmnopqrstuvwxyz";
+        }
+        let result = "";
+        for (let i = length; i > 0; --i) {
+          result += chars[Math.round(Math.random() * (chars.length - 1))];
+        }
+        return result;
+      };
+
+      const verificationCode = await generateCode(11);
+
+      const emailData = { email, verificationCode };
+      await User.update({ verificationCode }, { where: { email } });
+
+      await Email.sendResetEmail(emailData);
+
+      return res.status(200).json({ message: "reset email sent" });
+    } catch (error) {
+      return res.status(401).json({ message: "An error occured", err });
     }
-    const tokenHeader = JwtService.issueToken(
-      {
-        id: user.id
-      },
-      1800
-    );
-    EmailService.sendResetPasswordLink(user, tokenHeader);
-    return res.status(200).json({ message: "reset token sent" });
+  },
+
+  async verifyCode(req, res) {
+    try {
+      const verificationCode = req.params.id;
+
+      const user = await User.findOne({ where: verificationCode });
+
+      if (!user) {
+        return res.status(400).json({ message: "invailid code" });
+      }
+
+      return res.status(200).json({ message: "valid code", user });
+    } catch (error) {
+      return res.status(400).json({ message: "An error occured" });
+    }
   },
 
   async resetPassword(req, res) {
     try {
       const data = req.body;
+      const { id } = req.params;
 
       const user = await User.findOne({
-        id: req.user.id
+        verificationCode: id
       });
       if (!user) {
         return false;
