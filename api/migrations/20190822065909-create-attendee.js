@@ -19,6 +19,7 @@ module.exports = {
       time: {
         type: Sequelize.DATE
       },
+      duration: Sequelize.INTEGER,
       bookingId: {
         type: Sequelize.INTEGER,
         references: {

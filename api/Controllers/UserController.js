@@ -96,5 +96,27 @@ module.exports = {
     } catch (error) {
       return res.status(400).json({ message: "An error occurred", error });
     }
+  },
+
+  async userAvailability(req, res) {
+    try {
+      const { id } = req.params;
+      const start = req.body.time;
+      const end = data.time + data.duration * 60000;
+
+      const query = {
+        time: {
+          ">=": start,
+          "<=": end
+        },
+        userId: id
+      };
+      const user = await User.findOne({ where: { query } });
+      if (user) {
+        return res.status(400).json({ message: "user is booked" });
+      }
+
+      return res.status(400).json({ message: "user is available" });
+    } catch (error) {}
   }
 };
