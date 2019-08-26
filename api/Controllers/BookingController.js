@@ -6,7 +6,10 @@ module.exports = {
     try {
       const { id } = req.params;
 
-      const bookings = Booking.findAll({ where: { locationId: id } });
+      const bookings = Booking.findAll({
+        where: { locationId: id },
+        include: [{ all: true }]
+      });
 
       if (!bookings) {
         return res.status(400).json({ message: "no bookings at this time" });

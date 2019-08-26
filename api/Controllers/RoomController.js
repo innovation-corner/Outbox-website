@@ -1,5 +1,6 @@
 const { Room } = require("../models");
 const { Booking } = require("../models");
+const moment = require("moment");
 
 module.exports = {
   async listRooms(req, res) {
@@ -73,7 +74,28 @@ module.exports = {
 
   async viewRoomBookings(req, res) {
     try {
-        
+      const { id } = req.params;
+      let { start, end } = req.query;
+
+      if (!start || !end) {
+        start = moment()
+          .startOf("day")
+          .toDate();
+        end = moment()
+          .startOf("day")
+          .add(1, "day")
+          .toDate();
+      }
+
+      const criteria = { time: { $between: [start, end] }, roomId: id };
+
+      const bookings = await Booking.findAll({ criteria });
+
+      if (!bookings) {
+        return res.status(400).json({ message: "no results found" });
+      }
+
+      return res.status(200).json({ message: "bookings retrieved", bookings });
     } catch (error) {
       return res.status(400).json({ message: "An error occured", error });
     }
