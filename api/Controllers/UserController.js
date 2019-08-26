@@ -2,7 +2,7 @@ const passport = require("passport");
 const bcrypt = require("bcryptjs");
 const { User } = require("../models/index");
 const { Business } = require("../models/index");
-const { Location } = require("../models/index");
+const { Attendee } = require("../models/index");
 const JwtService = require("../modules/auth.module");
 const Email = require("../Emails");
 
@@ -105,14 +105,16 @@ module.exports = {
       const end = data.time + data.duration * 60000;
 
       const query = {
-        time: {
-          ">=": start,
-          "<=": end
+         time: {
+          $notBetween: [start, end]
+        },
+        endTime: {
+          $notBetween: [start, end]
         },
         userId: id
       };
-      const user = await User.findOne({ where: { query } });
-      if (user) {
+      const user = await Attendee.findOne({ where: { query } });
+      if (!user) {
         return res.status(400).json({ message: "user is booked" });
       }
 

@@ -17,11 +17,22 @@ module.exports = {
       time: {
         type: Sequelize.DATE
       },
+      endTime: {
+        type: Sequelize.DATE
+      },
       duration: {
         type: Sequelize.INTEGER
       },
       type: {
         type: Sequelize.STRING
+      },
+      roomId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Rooms",
+          key: "id",
+          as: "roomId"
+        }
       },
       deskId: {
         type: Sequelize.INTEGER,

@@ -6,6 +6,9 @@ module.exports = (sequelize, DataTypes) => {
       time: {
         type: DataTypes.DATE
       },
+      endTime: {
+        type: DataTypes.DATE
+      },
       duration: DataTypes.INTEGER,
     },
     {}
@@ -14,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     Attendee.belongsTo(models.Booking, {
       foreignKey: "bookingId",
+      onDelete: "CASCADE",
       as: "attendees"
     });
   };

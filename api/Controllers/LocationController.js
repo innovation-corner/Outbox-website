@@ -35,10 +35,19 @@ module.exports = {
     try {
       const { businessId } = req.user;
 
-      const locations = await Location.findAll({ where: { businessId } });
+      const criteria = { businessId };
+      const { search } = req.query;
+
+      if (search) {
+        criteria.push({ name: { $like: search } });
+      }
+
+      const locations = await Location.findAll({ where: { criteria } });
+
       if (!locations) {
         return res.status(400).json({ message: "No saved locations yet" });
       }
+
       return res
         .status(200)
         .json({ message: "locations retrieved", locations });
@@ -106,13 +115,20 @@ module.exports = {
   async viewUsers(req, res) {
     try {
       const { id } = req.params;
+      const criteria = { locationId: id };
+      const { search } = req.query;
+
+      if (search) {
+        criteria.push({ name: { $like: search } });
+      }
+
       const reqLocation = await Location.findOne({ where: { id } });
 
       if (!reqLocation) {
         return res.status(400).json({ message: "invalid location" });
       }
 
-      const users = await User.findAll({ where: { locationId: id } });
+      const users = await User.findAll({ where: { criteria } });
 
       return res.status(200).json({ message: "users retrieved", users });
     } catch (error) {

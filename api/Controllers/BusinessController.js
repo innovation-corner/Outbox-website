@@ -26,6 +26,12 @@ module.exports = {
   async listUsers(req, res) {
     try {
       const { id } = req.params;
+      const criteria = { BusinessId: id };
+      const { search } = req.query;
+
+      if (search) {
+        criteria.push({ name: { $like: search } });
+      }
 
       const reqBusiness = await Business.findOne({ where: { id } });
 
@@ -33,7 +39,7 @@ module.exports = {
         return res.status(400).json({ message: "invalid selection" });
       }
 
-      const users = await User.findAll({ where: { businessId: id } });
+      const users = await User.findAll({ where: { criteria } });
 
       return res.status(200).json({ message: "users retrieved", users });
     } catch (error) {

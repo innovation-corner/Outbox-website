@@ -24,21 +24,23 @@ module.exports = {
 
       const start = data.time;
       const end = data.time + data.duration * 60000;
+      data.endTime = end;
 
       const query = {
         time: {
-          ">=": start,
-          "<=": end
+          $notBetween: [start, end]
         },
-        deskId: id
+        endTime: {
+          $notBetween: [start, end]
+        },
+        roomId: id
       };
 
       const bookings = await Booking.findAll({ where: { query } });
 
-      if (bookings.length) {
+      if (!bookings.length) {
         return res.status(400).json({
-          message: "Desk is already booked for the selected time",
-          bookings
+          message: "Room is already booked for the selected time"
         });
       }
 
@@ -46,12 +48,18 @@ module.exports = {
 
       if (data.user.length) {
         data.user.forEach(user => {
-          const details = { userId: user.id, bookingId: booked.id };
+          const details = {
+            userId: user.id,
+            bookingId: booked.id,
+            endTime: end,
+            time: data.time,
+            duration: data.duration
+          };
           Attendee.create(details);
         });
       }
 
-      return res.status(200).json({ message: "Desk booked", booked });
+      return res.status(200).json({ message: "Room booked", booked });
     } catch (error) {
       return res.status(400).json({ message: "an error occured", error });
     }
@@ -90,38 +98,42 @@ module.exports = {
 
         query = {
           time: {
-            ">=": start,
-            "<=": end
+            $notBetween: [start, end]
           },
-          deskId: booking.deskId
+          endTime: {
+            $notBetween: [start, end]
+          },
+          roomId: booking.roomId
         };
 
         const checkBooking = await Booking.findAll({ where: { query } });
 
-        if (checkBooking.length) {
+        if (!checkBooking.length) {
           return res.status(400).json({
-            message: "Desk is already booked for the selected time",
+            message: "Room is already booked for the selected time",
             checkBooking
           });
         }
       }
 
-      if (data.deskId) {
+      if (data.roomId) {
         const start = data.time;
         const end = data.time + data.duration * 60000;
 
         query = {
           time: {
-            ">=": start,
-            "<=": end
+            $notBetween: [start, end]
           },
-          deskId: data.deskId
+          endTime: {
+            $notBetween: [start, end]
+          },
+          roomId: data.roomId
         };
         const checkBook = await Booking.findAll({ where: { query } });
 
-        if (checkBook.length) {
+        if (!checkBook.length) {
           return res.status(400).json({
-            message: "Desk is already booked for the selected time",
+            message: "Room is already booked for the selected time",
             checkBook
           });
         }
