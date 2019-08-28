@@ -3,7 +3,7 @@ const router = express.Router();
 const user = require("../Controllers/UserController");
 
 router.post("/invite", user.inviteUser);
-router.put('/edit/:id', user.edit);
-router.delete('/delete/:id', user.delete);
+router.put('/:id/edit', user.edit);
+router.delete('/:id/delete', user.delete);
 
 module.exports = router;

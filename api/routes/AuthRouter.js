@@ -6,8 +6,4 @@ router.post("/register", auth.registerAdmin);
 router.post("/complete-registration/:id", auth.verifyUser);
 router.post("/login", auth.login);
 
-// router.get("/orders", auth.viewAllCarts);
-
-// router.post("/create-order", auth.saveCart);
-
 module.exports = router;

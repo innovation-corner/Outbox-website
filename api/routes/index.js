@@ -1,12 +1,16 @@
 const userRouter = require("./UserRoutes");
 const authRouter = require("./AuthRouter");
 const locationRouter = require("./LocationRouter");
-const bookingrouter = require("./BookingRouter");
+const bookingRouter = require("./BookingRouter");
+const businessRouter = require("./BusinessRouter");
+const roomRouter = require("./RoomRouter");
+
 module.exports = {
   userRouter,
   locationRouter,
   // deskRouter,
-  bookingrouter,
-  // businessRouter,
+  bookingRouter,
+  roomRouter,
+  businessRouter,
   authRouter
 };

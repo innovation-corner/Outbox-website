@@ -104,7 +104,9 @@ module.exports = {
 
         const data = { last_login: new Date() };
 
-        await User.update(data, { returning: true, where: { id: user.id } });
+        await User.update(data, { where: { id: user.id } });
+
+        const user = await User.findOne({ where: { id: user.id } });
 
         return res
           .status(200)

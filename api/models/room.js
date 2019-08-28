@@ -3,12 +3,34 @@ module.exports = (sequelize, DataTypes) => {
   const Room = sequelize.define(
     "Room",
     {
-      name: DataTypes.STRING,
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: { msg: "name is required" }
+        }
+      },
 
       amenities: {
-        type: DataTypes.BLOB
+        type: DataTypes.STRING,
+        allowNull: false,
+        get() {
+          return this.getDataValue("amenities").split(";");
+        },
+        set(val) {
+          this.setDataValue("amenities", val.join(";"));
+        },
+        validate: {
+          notNull: { msg: "list of amenities is required" }
+        }
       },
-      capacity: DataTypes.NUMBER
+      capacity: {
+        type: DataTypes.NUMBER,
+        allowNull: false,
+        validate: {
+          notNull: { msg: "capacity is required" }
+        }
+      }
     },
     {}
   );
