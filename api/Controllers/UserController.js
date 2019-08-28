@@ -101,21 +101,32 @@ module.exports = {
   async userAvailability(req, res) {
     try {
       const { id } = req.params;
-      const start = req.body.time;
-      const end = data.time + data.duration * 60000;
+      const alreadyBooked = [];
+
+      const start = moment(data.time).toDate();
+      const end = moment(start)
+        .add(data.duration, "m")
+        .toDate();
+      data.endTime = end;
 
       const query = {
-        userId: id
+        roomId: id
       };
+
       const meetings = await Attendees.findAll({ where: query });
 
-      if(meetings.length){
+      if (meetings.length) {
         meetings.forEach(meeting => {
-          a
+          if (
+            (start >= meeting.time && start < meeting.endTime) ||
+            (end >= meeting.time && end < meeting.endTime)
+          ) {
+            alreadyBooked.push(meeting.id);
+          }
         });
       }
 
-      if (user) {
+      if(alreadyBooked.length){
         return res.status(400).json({ message: "user is booked" });
       }
 
