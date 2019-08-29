@@ -1,8 +1,8 @@
 const passport = require("passport");
-const bcrypt = require("bcryptjs");
+const moment = require('moment');
 const { User } = require("../models/index");
 const { Business } = require("../models/index");
-const { Location } = require("../models/index");
+const { Attendee } = require("../models/index");
 const JwtService = require("../modules/auth.module");
 const Email = require("../Emails");
 
@@ -93,6 +93,47 @@ module.exports = {
       await User.destroy({ where: { id } });
 
       return res.status(200).json({ message: "user deleted" });
+    } catch (error) {
+      return res.status(400).json({ message: "An error occurred", error });
+    }
+  },
+
+  async userAvailability(req, res) {
+    try {
+      const { id } = req.params;
+      const alreadyBooked = [];
+      const data = req.body;
+
+      const start = moment(data.time).toDate();
+      const end = moment(start)
+        .add(data.duration, "m")
+        .toDate();
+
+      data.endTime = end;
+
+      const query = {
+        userId: id
+      };
+console.log(query)
+      const meetings = await Attendee.findAll({ where: query });
+
+      console.log(meetings)
+      if (meetings.length) {
+        meetings.forEach(meeting => {
+          if (
+            (start >= meeting.time && start < meeting.endTime) ||
+            (end >= meeting.time && end < meeting.endTime)
+          ) {
+            alreadyBooked.push(meeting.id);
+          }
+        });
+      }
+
+      if (alreadyBooked.length) {
+        return res.status(400).json({ message: "user is booked" });
+      }
+
+      return res.status(200).json({ message: "user is available" });
     } catch (error) {
       return res.status(400).json({ message: "An error occurred", error });
     }

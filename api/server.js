@@ -17,9 +17,10 @@ const router = require("./routes");
 
 app.use("/api/v1/auth", router.authRouter);
 app.use("/api/v1/user",passport.authenticate('jwt', { session: false }), router.userRouter);
+app.use("/api/v1/booking",passport.authenticate('jwt', { session: false }), router.bookingrouter);
 app.use("/api/v1/business",passport.authenticate('jwt', { session: false }), router.businessRouter);
 app.use("/api/v1/location",passport.authenticate('jwt', { session: false }), router.locationRouter);
-app.use("/api/v1booking",passport.authenticate('jwt', { session: false }), router.bookingrouter);
+
 /** starting up the server */
 app.listen(port, () => {
   console.log("Server running on port " + port);
