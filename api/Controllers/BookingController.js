@@ -16,6 +16,7 @@ module.exports = {
         .add(data.duration, "m")
         .toDate();
       data.endTime = end;
+      console.log(data)
 
       const query = {
         roomId: id

@@ -46,24 +46,38 @@ module.exports = {
     try {
       const { locationId } = req.user;
       const { time, capacity, duration } = req.body;
+
+      const start = moment(time).toDate();
       const end = moment(time)
         .add(duration, "m")
         .toDate();
+
       let rooms = [];
       const bookedRooms = [];
+      const alreadyBooked = [];
 
       const criteria = {
-        locationId,
-        time: {
-          [Op.notBetween]: [time, end]
-        },
-        endTime: {
-          [Op.notBetween]: [time, end]
-        }
+        locationId
       };
 
+      if (start <= moment().toDate()) {
+        return res.status(400).json({
+          message: "Invalid time"
+        });
+      }
+      
       const bookings = await Booking.findAll({ where: criteria });
-      console.log("bookings:", bookings);
+
+      if (bookings.length) {
+        await bookings.forEach(booking => {
+          if (
+            (start >= booking.time && start < booking.endTime) ||
+            (end >= booking.time && end < booking.endTime)
+          ) {
+            alreadyBooked.push(booking.id);
+          }
+        });
+      }
 
       let allRooms = await Room.findAll({
         where: {
@@ -73,14 +87,13 @@ module.exports = {
       // console.log(moment().toDate());
       // console.log(allRooms);
 
-      if (bookings.length) {
-        await bookings.forEach(room => {
+      if (alreadyBooked.length) {
+        await alreadyBooked.forEach(room => {
           const bookedRoom = Room.findOne({ where: { id: room.roomId } });
           bookedRooms.push(bookedRoom);
         });
       }
 
-      console.log("bookedRooms:", bookedRooms);
       if (!bookedRooms.length) {
         const room = await allRooms.filter(el => !bookedRooms.includes(el));
         rooms.push(room);
@@ -113,11 +126,10 @@ module.exports = {
       }
 
       const criteria = { time: { [Op.gte]: start, [Op.lte]: end }, roomId: id };
-      console.log(criteria)
       const bookings = await Booking.findAll({ where: criteria });
 
-      if (!bookings) {
-        return res.status(400).json({ message: "no results found" });
+      if (!bookings.length) {
+        return res.status(400).json({ message: "no bookings" });
       }
 
       return res.status(200).json({ message: "bookings retrieved", bookings });
