@@ -106,8 +106,6 @@ module.exports = {
 
         await User.update(data, { where: { id: user.id } });
 
-        const user = await User.findOne({ where: { id: user.id } });
-
         return res
           .status(200)
           .json({ message: "login successful", responseObj });
