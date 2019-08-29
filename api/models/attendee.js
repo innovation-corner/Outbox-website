@@ -7,6 +7,9 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DATE
       },
       duration: DataTypes.INTEGER,
+      endTime: {
+        type: DataTypes.DATE
+      }
     },
     {}
   );
