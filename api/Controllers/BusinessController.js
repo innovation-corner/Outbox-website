@@ -28,7 +28,7 @@ module.exports = {
   async listUsers(req, res) {
     try {
       const { id } = req.params;
-      const criteria = { BusinessId: id };
+      const criteria = { businessId: id };
       const { search } = req.query;
 
       if (search) {
