@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import configureStore from './store/configureStore';
+import Root from './root';
 import './index.scss';
-import { routing } from './router';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-ReactDOM.render(routing, document.getElementById('root'));
+const store = configureStore();
 
+ReactDOM.render(<Root store={store} />, document.getElementById('root'));
