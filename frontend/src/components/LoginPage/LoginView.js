@@ -8,14 +8,13 @@ import {
     Input,
     Button
 } from 'reactstrap';
-import TopNavBar from '../../components/NavBar/index';
+import TopNavBar from '../NavBar/index';
 import BackgroundSlideshow from 'react-background-slideshow';
-
 import image1 from '../../assets/images/background-1.jpeg';
 import image2 from '../../assets/images/background-2.jpeg';
 import './styles.scss';
 
-class Home extends Component {
+class LoginView extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -167,4 +166,4 @@ class Home extends Component {
     };
 };
 
-export default Home;
+export default LoginView;
