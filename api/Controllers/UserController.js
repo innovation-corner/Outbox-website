@@ -5,6 +5,7 @@ const { Business } = require("../models/index");
 const { Attendee } = require("../models/index");
 const JwtService = require("../modules/auth.module");
 const Email = require("../Emails");
+const { Op } = require("sequelize");
 
 module.exports = {
   async inviteUser(req, res) {
@@ -70,11 +71,11 @@ module.exports = {
           return res.status(400).json({ message: "invalid password" });
         }
       }
-
-      const updatedUser = await User.update(data, {
-        returning: true,
+      
+      await User.update(data, {
         where: { id }
       });
+      const updatedUser = await User.findOne({where:{id}})
 
       return res.status(200).json({ message: "user updated", updatedUser });
     } catch (error) {
@@ -114,7 +115,7 @@ module.exports = {
       const query = {
         userId: id
       };
-console.log(query)
+
       const meetings = await Attendee.findAll({ where: query });
 
       console.log(meetings)

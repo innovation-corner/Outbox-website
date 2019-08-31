@@ -54,13 +54,20 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "businessId",
       as: "business"
     });
+    User.hasMany(models.Attendee, {
+      foreignKey: "userId",
+      as: "user"
+    });
+    User.hasMany(models.Booking, {
+      foreignKey: "bookedBy",
+      as: "bookedBy"
+    });
   };
   User.prototype.validPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
   };
 
   User.beforeCreate(user => {
-    console.log('user',user)
     user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(8), null);
   });
 
