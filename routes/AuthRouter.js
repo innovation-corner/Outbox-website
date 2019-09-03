@@ -9,8 +9,4 @@ router.post("/reset-password", auth.resetPassword);
 router.post("/verify-code", auth.verifyCode);
 router.post("/send-code", auth.resetLink);
 
-// router.get("/orders", auth.viewAllCarts);
-
-// router.post("/create-order", auth.saveCart);
-
 module.exports = router;

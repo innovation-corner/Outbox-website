@@ -19,6 +19,9 @@ module.exports = {
       time: {
         type: Sequelize.DATE
       },
+      endTime: {
+        type: Sequelize.DATE
+      },
       duration: Sequelize.INTEGER,
       endTime: {
         type: Sequelize.DATE

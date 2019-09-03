@@ -26,7 +26,6 @@ module.exports = {
       }</p>
         `;
       EmailService.sendMail(data);
-      console.log(data)
     } catch (error) {
       console.log(err);
     }

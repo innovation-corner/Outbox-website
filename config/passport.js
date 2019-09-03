@@ -23,7 +23,6 @@ const authenticate = (email, password, done) => {
           message: "Unverified email"
         });
       }
-      console.log("passport");
       return done(null, user);
     })
     .catch(e => {
@@ -50,7 +49,6 @@ passport.use(
   "jwt",
   new JWTstrategy(opts, (jwt_payload, done) => {
     try {
-      console.log(jwt_payload)
       User.findOne({
         where: {
           id: jwt_payload.id
@@ -59,7 +57,6 @@ passport.use(
         if (user) {
           done(null, user);
         } else {
-          console.log("invalid user");
           done(null, false);
         }
       });

@@ -1,57 +1,70 @@
 const { Booking } = require("../models");
 const { Attendee } = require("../models");
+const { Op } = require("sequelize");
+const moment = require("moment");
 
 module.exports = {
-  async listLocationBookings(req, res) {
-    try {
-      const { id } = req.params;
-
-      const bookings = Booking.findAll({ where: { locationId: id } });
-
-      if (!bookings) {
-        return res.status(400).json({ message: "no bookings at this time" });
-      }
-      return res.status(200).json({ message: "bookings retrieved", bookings });
-    } catch (error) {
-      return res.status(400).json({ message: "an error occured", error });
-    }
-  },
-
   async placeBooking(req, res) {
     try {
       const { id } = req.params;
       const data = req.body;
+      let alreadyBooked = [];
 
-      const start = data.time;
-      const end = data.time + data.duration * 60000;
+
+      const start = moment(data.time).toDate();
+      const end = moment(start)
+        .add(data.duration, "m")
+        .toDate();
+      data.endTime = end;
+      console.log(data)
 
       const query = {
-        time: {
-          ">=": start,
-          "<=": end
-        },
-        deskId: id
+        roomId: id
       };
 
-      const bookings = await Booking.findAll({ where: { query } });
-
-      if (bookings.length) {
+      if (start <= moment().toDate()) {
         return res.status(400).json({
-          message: "Desk is already booked for the selected time",
-          bookings
+          message: "Invalid time"
         });
       }
 
+      const bookings = await Booking.findAll({ query });
+
+      if (bookings.length) {
+        await bookings.forEach(booking => {
+          if (
+            (start >= booking.time && start < booking.endTime) ||
+            (end >= booking.time && end < booking.endTime)
+          ) {
+            alreadyBooked.push(booking.id);
+          }
+        });
+      }
+
+      if (alreadyBooked.length) {
+        return res.status(400).json({
+          message: "Room is already booked for the selected time"
+        });
+      }
+
+      data.roomId = id;
+
       const booked = await Booking.create(data);
 
-      if (data.user.length) {
+      if (data.user) {
         data.user.forEach(user => {
-          const details = { userId: user.id, bookingId: booked.id };
+          const details = {
+            userId: user.id,
+            bookingId: booked.id,
+            endTime: end,
+            time: data.time,
+            duration: data.duration
+          };
           Attendee.create(details);
         });
       }
 
-      return res.status(200).json({ message: "Desk booked", booked });
+      return res.status(200).json({ message: "Room booked", booked });
     } catch (error) {
       return res.status(400).json({ message: "an error occured", error });
     }
@@ -85,52 +98,66 @@ module.exports = {
       }
 
       if (data.time) {
-        const start = data.time;
-        const end = data.time + data.duration * 60000;
+        const start = moment(data.time).toDate();
+        const end = moment(start)
+          .add(data.duration, "m")
+          .toDate();
 
         query = {
           time: {
-            ">=": start,
-            "<=": end
+            [Op.gte]: start,
+            [Op.lte]: end
           },
-          deskId: booking.deskId
+          endTime: {
+            [Op.lte]: end
+          },
+          roomId: data.roomId
         };
 
-        const checkBooking = await Booking.findAll({ where: { query } });
-
-        if (checkBooking.length) {
+        if (start <= moment().toDate()) {
           return res.status(400).json({
-            message: "Desk is already booked for the selected time",
-            checkBooking
+            message: "Invalid time"
+          });
+        }
+        const checkBooking = await Booking.findAll({ where: query });
+
+        // console.log(id);
+        if (checkBooking.length && checkBooking[0].id != id) {
+          return res.status(400).json({
+            message: "Room is already booked for the selected time"
           });
         }
       }
 
-      if (data.deskId) {
-        const start = data.time;
-        const end = data.time + data.duration * 60000;
+      if (data.roomId) {
+        start = moment(data.time).toDate();
+        end = moment(start)
+          .add(data.duration, "m")
+          .toDate();
 
         query = {
           time: {
-            ">=": start,
-            "<=": end
+            [Op.gte]: start,
+            [Op.lte]: end
           },
-          deskId: data.deskId
+          endTime: {
+            [Op.lte]: end
+          },
+          roomId: data.roomId
         };
-        const checkBook = await Booking.findAll({ where: { query } });
-
-        if (checkBook.length) {
+        const checkBook = await Booking.findAll({ where: query });
+        console.log(checkBook, '"_"', id);
+        if (checkBook.length && checkBook[0].id == id) {
           return res.status(400).json({
-            message: "Desk is already booked for the selected time",
-            checkBook
+            message: "Room is already booked for the selected time"
           });
         }
       }
 
-      const updatedBooking = await Booking.update(data, {
-        returning: true,
+      await Booking.update(data, {
         where: { id }
       });
+      const updatedBooking = await Booking.findOne({ where: { id } });
 
       return res
         .status(200)

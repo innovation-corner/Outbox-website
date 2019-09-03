@@ -15,14 +15,25 @@ module.exports = (sequelize, DataTypes) => {
       time: {
         type: DataTypes.DATE
       },
+      endTime: {
+        type: DataTypes.DATE
+      },
       type: {
         type: DataTypes.STRING
-      },
+      }
     },
     {}
   );
   Booking.associate = function(models) {
     // associations can be defined here
+    Booking.belongsTo(models.Room, {
+      foreignKey: "roomId",
+      onDelete: "CASCADE"
+    });
+    Booking.hasOne(models.Location, {
+      foreignKey: "locationId",
+      onDelete: "CASCADE"
+    });
   };
   return Booking;
 };
