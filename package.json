@@ -4,12 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-<<<<<<< HEAD
     "start": "node server.js -p $PORT",
     "dev": "nodemon ./server.js",
-=======
-    "start": "nodemon server.js -p $PORT",
->>>>>>> d081ec2e25e3978590a98ab6af720985b53cb728
     "heroku-postbuild": "cd frontend && npm install --only=dev && npm install && npm run build"
   },
   "keywords": [],
