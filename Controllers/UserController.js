@@ -1,11 +1,11 @@
 const passport = require("passport");
 const moment = require('moment');
-const { User } = require("../models/index");
-const { Business } = require("../models/index");
-const { Attendee } = require("../models/index");
+const User = require("../models/user");
+const Business = require("../models/business");
+const Attendee  = require("../models/attendee");
 const JwtService = require("../modules/auth.module");
 const Email = require("../Emails");
-const { Op } = require("sequelize");
+// const { Op } = require("sequelize");
 
 module.exports = {
   async inviteUser(req, res) {

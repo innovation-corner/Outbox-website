@@ -1,6 +1,6 @@
-const { Business } = require("../models");
-const { Location } = require("../models");
-const { User } = require("../models");
+const Business = require("../models/business");
+const Location = require("../models/location");
+const User = require("../models/user");
 const { Op } = require("sequelize");
 
 module.exports = {
