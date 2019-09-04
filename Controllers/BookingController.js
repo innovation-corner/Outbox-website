@@ -1,5 +1,5 @@
-const { Booking } = require("../models");
-const { Attendee } = require("../models");
+const Booking  = require("../models/booking");
+const Attendee = require("../models/attendee");
 const { Op } = require("sequelize");
 const moment = require("moment");
 

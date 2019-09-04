@@ -5,7 +5,7 @@ const ExtractJWT = require("passport-jwt").ExtractJwt;
 const JWTstrategy = require("passport-jwt").Strategy;
 const jwtSecret = process.env.jwtSecret || "secret";
 
-const { User } = require("../models/index");
+const User = require("../models/user");
 
 const authenticate = (email, password, done) => {
   User.findOne({ where: { email }, include: [{ all: true }] })

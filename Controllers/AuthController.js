@@ -6,9 +6,9 @@
 
 const passport = require("passport");
 const bcrypt = require("bcryptjs");
-const { User } = require("../models/index");
-const { Business } = require("../models/index");
-const { Location } = require("../models/index");
+const User  = require("../models/user");
+const Business = require("../models/business");
+const Location = require("../models/location");
 const JwtService = require("../modules/auth.module");
 const Email = require("../Emails");
 
