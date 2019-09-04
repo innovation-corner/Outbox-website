@@ -20,6 +20,11 @@ app.use(bodyParser.json());
 
 const router = require("./routes");
 
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend", "build", "index.html"));
+});
+
 app.use("/api/v1/auth", router.authRouter);
 app.use("/api/v1/user",passport.authenticate('jwt', { session: false }), router.userRouter);
 app.use("/api/v1/book",passport.authenticate('jwt', { session: false }), router.bookingRouter);
