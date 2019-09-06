@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 
 import PrivateRoute from './privateRoute';
-import LoginPage from '../components/LoginPage/LoginView';
+import LoginPage from '../containers/Login';
 import { DashboardView } from '../components/Account/Dashboard/DashboardView';
 
 class App extends Component {

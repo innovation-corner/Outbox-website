@@ -17,11 +17,11 @@ export function* registerSaga(payload) {
         console.log("TCL: function*loginUser -> data", data); 
         yield put(stopLoading()); 
         if (success) { 
-            cookie.set("token", data.access_token, { expires: 1 }); 
+            // cookie.set("token", data.access_token, { expires: 1 }); 
             localStorage.setItem("token", data.access_token); 
             localStorage.setItem("userId", data.user.userId); 
             yield put({type: LOGIN_SUCCESS, payload: data.user}); 
-            Router.push("/home/dashboard"); 
+            // Router.push("/home/dashboard"); 
         } else { 
             yield put(stopLoading()); 
             yield put({ type: LOGIN_FAILURE, message }); 
@@ -47,7 +47,7 @@ export function* loginSaga(payload) {
                 payload: data.user 
             }); 
 
-            Router.push("/dashboard"); 
+            // Router.push("/dashboard"); 
         } else { 
             yield put(stopLoading()); 
             yield put({ type: LOGIN_FAILURE, message }); 

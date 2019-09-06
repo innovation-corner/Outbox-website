@@ -1,25 +1,26 @@
 import { 
-    SIGNIN,
-    SIGNUP,
-    LOGOUT
+  LOGIN,
+  REGISTER,
+  LOGOUT
 } from '../actionTypes';
-import { loginService } from '../services/authService';
 
-export function login() {
-    return {
-      type: SIGNIN,
-    };
+export const login = payload => {
+  return {
+    type: LOGIN,
+    payload
+  };
 };
 
-export function register() {
-    return dispatch => {
-
-    };
+export const register = payload => {
+  return {
+    type: REGISTER,
+    payload
+  }
 };
   
 export function logout() {
-    return {
-      type: LOGOUT,
-    };
-}
+  return {
+    type: LOGOUT,
+  };
+};
   

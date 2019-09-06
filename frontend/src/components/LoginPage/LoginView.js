@@ -64,105 +64,6 @@ class LoginView extends Component {
         onLogin(payload);
     };
 
-    renderRegForm = (isLoading) => (
-        <div>
-            <div className="form-header">
-                <h3>Create new account</h3>
-                <p>
-                    Already have an account? <br/>
-                    <button type="button" onClick={this.toggleFormView}>Sign In</button>
-                </p>
-            </div>
-            <Form className="form-content" onSubmit={this.handleSignUp}>
-                <FormGroup>
-                    <Input 
-                        type="text" 
-                        name="businessName" 
-                        placeholder="Business name" 
-                        onChange={this.handleChange}
-                        value={this.state.businessName}
-                    />
-                </FormGroup>
-                <FormGroup>
-                    <Input 
-                        type="email" 
-                        name="email" 
-                        placeholder="Email address" 
-                        onChange={this.handleChange} 
-                        valaue={this.state.email}
-                    />
-                </FormGroup>
-                <FormGroup>
-                    <Input 
-                        type={this.state.type} 
-                        name="password" 
-                        placeholder="Password" 
-                        onChange={this.handleChange} 
-                        value={this.state.password}
-                    />
-                    <span
-                        className="fa fa-fw fa-eye field-icon toggle-password"
-                        onClick={this.showHidePassword}
-                    />
-                </FormGroup>
-                <div className="form-footer">
-                    <FormGroup>
-                        { 
-                            isLoading ? 
-                            ("Loading") : 
-                            (<Button color="primary" type="submit">Sign Up</Button>)
-                        }
-                    </FormGroup> 
-                </div>
-            </Form>
-        </div>
-    );
-
-    renderSignInForm = (isLoading) => (
-        <div>
-            <div className="form-header">
-                <h3>Hello</h3>
-                <p>
-                    Sign in with your credentials or <br/>
-                    <button onClick={this.toggleFormView}>create a new account</button>
-                </p>
-            </div>
-            <Form className="form-content" onSubmit={this.handleSignIn}>
-                <FormGroup>
-                    <Input 
-                        type="email" 
-                        name="email" 
-                        placeholder="Email address"
-                        onChange={this.handleChange}
-                        value={this.state.email}
-                    />
-                </FormGroup>
-                <FormGroup>
-                    <Input 
-                        type={this.state.type}
-                        name="password" 
-                        placeholder="Password"
-                        onChange={this.handleChange}
-                        value={this.state.password}
-                    />
-                    <span
-                        className="fa fa-fw fa-eye field-icon toggle-password"
-                        onClick={this.showHidePassword}
-                    />
-                </FormGroup>
-                <div className="form-footer">
-                    <FormGroup>
-                        { 
-                            isLoading ? 
-                            ("Loading") : 
-                            (<Button color="primary" type="submit">Login</Button>)
-                        }
-                    </FormGroup>
-                </div>
-            </Form>
-        </div>
-    );
-
     render() {
         const { isLoading } = this.props;
         return (
@@ -172,7 +73,105 @@ class LoginView extends Component {
                     <Container className="main-body" fluid>
                         <Row className="first-row">
                             <Col xs="12" sm="3" className="form-box">
-                                {this.state.showReg ? this.renderRegForm(isLoading) : this.renderSignInForm(isLoading)}
+                                {this.state.showReg ? 
+                                (
+                                    <div>
+                                        <div className="form-header">
+                                            <h3>Create new account</h3>
+                                            <p>
+                                                Already have an account? <br/>
+                                                <button type="button" onClick={this.toggleFormView}>Sign In</button>
+                                            </p>
+                                        </div>
+                                        <Form className="form-content" onSubmit={this.handleSignUp}>
+                                            <FormGroup>
+                                                <Input 
+                                                    type="text" 
+                                                    name="businessName" 
+                                                    placeholder="Business name" 
+                                                    onChange={this.handleChange}
+                                                    value={this.state.businessName}
+                                                />
+                                            </FormGroup>
+                                            <FormGroup>
+                                                <Input 
+                                                    type="email" 
+                                                    name="email" 
+                                                    placeholder="Email address" 
+                                                    onChange={this.handleChange} 
+                                                    valaue={this.state.email}
+                                                />
+                                            </FormGroup>
+                                            <FormGroup>
+                                                <Input 
+                                                    type={this.state.type} 
+                                                    name="password" 
+                                                    placeholder="Password" 
+                                                    onChange={this.handleChange} 
+                                                    value={this.state.password}
+                                                />
+                                                <span
+                                                    className="fa fa-fw fa-eye field-icon toggle-password"
+                                                    onClick={this.showHidePassword}
+                                                />
+                                            </FormGroup>
+                                            <div className="form-footer">
+                                                <FormGroup>
+                                                    { 
+                                                        isLoading ? 
+                                                        ("Loading") : 
+                                                        (<Button color="primary" type="submit">Sign Up</Button>)
+                                                    }
+                                                </FormGroup> 
+                                            </div>
+                                        </Form>
+                                    </div>
+                                ) : 
+                                (
+                                    <div>
+                                        <div className="form-header">
+                                            <h3>Hello</h3>
+                                            <p>
+                                                Sign in with your credentials or <br/>
+                                                <button onClick={this.toggleFormView}>create a new account</button>
+                                            </p>
+                                        </div>
+                                        <Form className="form-content" onSubmit={this.handleSignIn}>
+                                            <FormGroup>
+                                                <Input 
+                                                    type="email" 
+                                                    name="email" 
+                                                    placeholder="Email address"
+                                                    onChange={this.handleChange}
+                                                    value={this.state.email}
+                                                />
+                                            </FormGroup>
+                                            <FormGroup>
+                                                <Input 
+                                                    type={this.state.type}
+                                                    name="password" 
+                                                    placeholder="Password"
+                                                    onChange={this.handleChange}
+                                                    value={this.state.password}
+                                                />
+                                                <span
+                                                    className="fa fa-fw fa-eye field-icon toggle-password"
+                                                    onClick={this.showHidePassword}
+                                                />
+                                            </FormGroup>
+                                            <div className="form-footer">
+                                                <FormGroup>
+                                                    { 
+                                                        isLoading ? 
+                                                        ("Loading") : 
+                                                        (<Button color="primary" type="submit">Login</Button>)
+                                                    }
+                                                </FormGroup>
+                                            </div>
+                                        </Form>
+                                    </div>
+                                )
+                                }
                             </Col>
                             <Col xs="12" sm="4"></Col>
                             <Col xs="12" sm="4"></Col>

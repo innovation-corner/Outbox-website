@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { login, register } from '../store/actions/authActions';
 import LoginView from '../components/LoginPage/LoginView';
@@ -20,8 +20,8 @@ class Login extends Component {
 
         return (
             <LoginView 
-                onLogin={payload => this.login(payload)}
-                onRegister={payload => this.register(payload)}
+                onLogin={(payload) => this.login(payload)}
+                onRegister={(payload) => this.register(payload)}
                 isLoading={isLoading}
             />
         );
