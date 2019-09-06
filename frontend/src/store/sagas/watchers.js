@@ -1,8 +1,8 @@
 import { takeLatest } from 'redux-saga/effects';
 import { registerSaga, loginSaga } from './authSaga';
-import { SIGNUP, SIGNIN } from '../actionTypes';
+import { REGISTER, LOGIN } from '../actionTypes';
 
 export default function* watchUserAuthentication() {
-    yield takeLatest(SIGNUP, registerSaga);
-    yield takeLatest(SIGNIN, loginSaga);
+    yield takeLatest(REGISTER, registerSaga);
+    yield takeLatest(LOGIN, loginSaga);
 };

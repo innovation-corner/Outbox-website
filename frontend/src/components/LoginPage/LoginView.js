@@ -45,13 +45,26 @@ class LoginView extends Component {
 
     handleSignUp = (e) => {
         e.preventDefault();
+        const { onRegister } = this.props;
+        const payload = {
+            businessName: this.state.businessName,
+            email: this.state.email,
+            password: this.state.password
+        };
+        onRegister(payload);
     };
 
     handleSignIn = (e) => {
         e.preventDefault();
-    }
+        const { onLogin } = this.props;
+        const payload = {
+            email: this.state.email,
+            password: this.state.password
+        };
+        onLogin(payload);
+    };
 
-    renderRegForm = () => (
+    renderRegForm = (isLoading) => (
         <div>
             <div className="form-header">
                 <h3>Create new account</h3>
@@ -94,14 +107,18 @@ class LoginView extends Component {
                 </FormGroup>
                 <div className="form-footer">
                     <FormGroup>
-                        <Button color="primary" type="submit" disabled>Sign Up</Button>
+                        { 
+                            isLoading ? 
+                            ("Loading") : 
+                            (<Button color="primary" type="submit">Sign Up</Button>)
+                        }
                     </FormGroup> 
                 </div>
             </Form>
         </div>
     );
 
-    renderSignInForm = () => (
+    renderSignInForm = (isLoading) => (
         <div>
             <div className="form-header">
                 <h3>Hello</h3>
@@ -135,7 +152,11 @@ class LoginView extends Component {
                 </FormGroup>
                 <div className="form-footer">
                     <FormGroup>
-                        <Button color="primary" type="submit" disabled>Login</Button>
+                        { 
+                            isLoading ? 
+                            ("Loading") : 
+                            (<Button color="primary" type="submit">Login</Button>)
+                        }
                     </FormGroup>
                 </div>
             </Form>
@@ -143,6 +164,7 @@ class LoginView extends Component {
     );
 
     render() {
+        const { isLoading } = this.props;
         return (
             <div>
                 <div className="content-container">
@@ -150,7 +172,7 @@ class LoginView extends Component {
                     <Container className="main-body" fluid>
                         <Row className="first-row">
                             <Col xs="12" sm="3" className="form-box">
-                                {this.state.showReg ? this.renderRegForm() : this.renderSignInForm()}
+                                {this.state.showReg ? this.renderRegForm(isLoading) : this.renderSignInForm(isLoading)}
                             </Col>
                             <Col xs="12" sm="4"></Col>
                             <Col xs="12" sm="4"></Col>

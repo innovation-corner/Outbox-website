@@ -1,6 +1,6 @@
 export const axios = require("axios");
 export const _axios = axios.create({
-    baseURL: "url would go here"
+    baseURL: "http://localhost:5000/api/v1/"
 });
 
 // _axios.interceptors.request.use(
