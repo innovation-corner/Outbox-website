@@ -6,7 +6,7 @@
 
 const passport = require("passport");
 const bcrypt = require("bcryptjs");
-const User  = require("../models/user");
+const User = require("../models/user");
 const Business = require("../models/business");
 const Location = require("../models/location");
 const JwtService = require("../modules/auth.module");
@@ -53,7 +53,7 @@ module.exports = {
 
       Email.registrationEmail(emailData);
 
-      return res.status(200).json({ message: "registration successful", user });
+      return res.status(200).json({ message: "registration successful", response:{ user,success:true} });
     } catch (error) {
       return res.status(400).json({ message: "an error occured", error });
     }
@@ -147,7 +147,7 @@ module.exports = {
 
       return res.status(200).json({ message: "reset email sent" });
     } catch (error) {
-      return res.status(401).json({ message: "An error occured", err });
+      return res.status(401).json({ message: "An error occured", error });
     }
   },
 
@@ -198,6 +198,8 @@ module.exports = {
       return res
         .status(200)
         .json({ message: "Password reset successfully", user });
-    } catch {}
+    } catch (error) {
+      return res.status(400).json({ message: "An error occured" });
+    }
   }
 };
