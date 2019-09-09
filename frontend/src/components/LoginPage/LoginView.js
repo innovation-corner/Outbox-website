@@ -72,7 +72,7 @@ class LoginView extends Component {
                     <TopNavBar />
                     <Container className="main-body" fluid>
                         <Row className="first-row">
-                            <Col xs="12" sm="3" className="form-box">
+                            <Col xs="12" sm="12" md="4" lg="3" className="form-box">
                                 {this.state.showReg ? 
                                 (
                                     <div>
@@ -173,8 +173,8 @@ class LoginView extends Component {
                                 )
                                 }
                             </Col>
-                            <Col xs="12" sm="4"></Col>
-                            <Col xs="12" sm="4"></Col>
+                            <Col xs="12" sm="12" md="4" lg="4"></Col>
+                            <Col xs="12" sm="12" md="4" lg="4"></Col>
                         </Row>
                     </Container>
                 </div>

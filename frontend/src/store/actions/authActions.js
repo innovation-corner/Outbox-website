@@ -56,8 +56,8 @@ export const login = data => {
 };
   
 export function logout() {
-  return {
-    type: LOGOUT,
-  };
+  return (dispatch, getState) => {
+    
+  }
 };
   
