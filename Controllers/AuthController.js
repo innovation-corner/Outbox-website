@@ -103,16 +103,20 @@ module.exports = {
           role: user.role,
           email: user.email
         });
-        const responseObj = { user };
-        responseObj.token = token;
 
+        const payload = { user };
+        payload.token = token;
         const data = { last_login: new Date() };
 
         await User.update(data, { where: { id: user.id } });
 
         return res
           .status(200)
-          .json({ message: "login successful", responseObj });
+          .json({ 
+            success: true,
+            message: "login successful", 
+            payload
+          });
       })(req, res);
     } catch (err) {
       return res.status(401).json({ message: "An error occured", err });

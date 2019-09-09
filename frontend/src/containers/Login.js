@@ -4,10 +4,8 @@ import { login, register } from '../store/actions/authActions';
 import LoginView from '../components/LoginPage/LoginView';
 
 class Login extends Component {
-
     render() {
         const { isLoading } = this.props;
-
         return (
             <LoginView 
                 onLogin={(payload) => this.props.onLogin(payload)}
