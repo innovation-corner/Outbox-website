@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
+import { FaBeer } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 import { styles } from './styles';
 
@@ -23,7 +24,7 @@ export const SideBarView = ({}) => {
                         <ul className={styles.menuNav}>
                             <li className={classNames(styles.menuNavItem, styles.menuNavItemActive, "active kt-menu__item--submenu kt-menu__item--submenu-fullheight kt-menu__item--open kt-menu__item--here")}>
                                 <Link to="javascript:;" className={classNames("kt-menu__link")}>
-                                    <i className={classNames(styles.menuNavItemIcon, "active flaticon-home")}></i>
+                                    <FaBeer className={classNames(styles.menuNavItemIcon, "active")} />
                                 </Link>
                             </li>
                             <li className={classNames(styles.menuNavItem, styles.menuNavItemActive, "kt-menu__item--submenu-fullheight kt-menu__item--open kt-menu__item--here")}>
