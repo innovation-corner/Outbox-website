@@ -5,6 +5,7 @@ import { history } from '../store/configureStore';
 
 import PrivateRoute from './privateRoute';
 import LoginPage from '../containers/Login';
+import ConfirmationView from '../components/Confirmation/ConfirmationView';
 import { DashboardView } from '../components/Account/Dashboard/DashboardView';
 
 class App extends Component {
@@ -13,6 +14,7 @@ class App extends Component {
       <ConnectedRouter history={history}>
           <Switch>
             <Route path='/' exact={true} component={LoginPage} />
+            <Route path='/email-confirmation' component={ConfirmationView} />
             <PrivateRoute path='/dashboard' component={DashboardView} />
           </Switch>
       </ConnectedRouter>
