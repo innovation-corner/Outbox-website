@@ -16,7 +16,7 @@ class ConfirmationView extends Component {
         return (
             <Fragment>
                 <div>
-                    {isVerified && 
+                    {this.state.isVerified && 
                         <>
                             <p>Your email has been verified successfully. Redirecting in 3</p>
                         </>

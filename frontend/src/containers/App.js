@@ -6,7 +6,7 @@ import { history } from '../store/configureStore';
 import PrivateRoute from './privateRoute';
 import LoginPage from '../containers/Login';
 import ConfirmationView from '../components/Confirmation/ConfirmationView';
-import { DashboardView } from '../components/Account/Dashboard/DashboardView';
+import DashboardView from '../components/Account/Dashboard/DashboardView';
 
 class App extends Component {
   render() {

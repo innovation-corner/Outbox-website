@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { styles } from './styles';
+import Logo from '../../assets/images/logo-1.png';
 
 export const TopBarView = ({}) => {
     return (
@@ -13,14 +15,14 @@ export const TopBarView = ({}) => {
                     <div id="kt_header_menu" className="kt-header-menu kt-header-menu-mobile  kt-header-menu--layout-">
                         <ul className="kt-menu__nav">
                             <li className="kt-menu__item logo">
-                                <a href="index.html" className="kt-menu__link ">
+                                <Link to="#" className="kt-menu__link ">
                                     <span className="kt-menu__link-text">
-                                        <img alt="Logo" src=""/>
+                                        <img alt="Logo" src={Logo} />
                                     </span>
-                                </a>
+                                </Link>
                             </li>
                             <li classNmae="kt-menu__item">
-                                <a className="kt-menu__link">
+                                <Link to="" className="kt-menu__link">
                                     <div className="kt-quick-search" id="kt_quick_search_default">
                                         <form className="kt-quick-search__form" style={{backgroundColor: 'unset'}}>
                                             <div className="input-group">
@@ -38,7 +40,7 @@ export const TopBarView = ({}) => {
                                             <div className="kt-quick-search__wrapper kt-scroll"></div>
                                         </div>
                                     </div>
-                                </a>
+                                </Link>
                             </li>
                         </ul>
                     </div>
