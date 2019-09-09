@@ -1,70 +1,91 @@
-export const axios = require("axios");
-const baseURL = 
-    process.env.NODE_ENV === 'development' ? 
-    "http://localhost:5000/api/v1/" : 
-    "" ;
-
-// axios.interceptors.request.use(
-//     config => {
-//         const decryptedToken = decryptAndRead(ENCRYPT_USER);
-//         if (decryptedToken) { 
-//             const { access_token, expired } = decryptedToken;
-//             if (!expired) {
-//                 config.headers["Authorization"] = `Bearer ${access_token}`;
-//             }
-//         }
-//         return config;
-//     },
-//     error => {
-//         return Promise.reject({ error });
-//     }
-// );
+const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:5000/api/v1/' : "" ;
 
 const getFunc = (path, payload) => {
+    const token = `Bearer ${localStorage.getItem("token")}`
     return new Promise((resolve, reject) => {
-        axios.get(baseURL + path, payload)
-        .then(res => {
-            return resolve({ ...res });
-        })
-        .catch(({ response }) => {
-            return reject({ response });
-        });
+        fetch(`${baseURL}${path}`, { 
+            method: "GET", 
+            headers: { 
+                "Content-Type": "application/json", 
+                Authorization: token 
+            }, 
+            body: JSON.stringify(payload) 
+        }) 
+        .then(res => res.json()) 
+        .then(res => { 
+            console.log("TCL: res", res); 
+            return resolve({ ...res }); 
+        }) 
+        .catch(({ response }) => { 
+            console.log("TCL: response", response); 
+            return reject({ response }); 
+        }); 
     });
 };
 
-const delFunc = path => {
+const delFunc = (path, payload) => {
+    const token = `Bearer ${localStorage.getItem("token")}`; 
     return new Promise((resolve, reject) => {
-        axios.delete(baseURL + path)
-        .then(res => {
-            return resolve({ ...res });
-        })
-        .catch(({ response }) => {
-            return reject({ response });
-        });
+        fetch(`${baseURL}${path}`, { 
+            method: "DELETE", 
+            headers: { 
+                "Content-Type": "application/json", 
+                Authorization: token 
+            }
+        }) 
+        .then(res => res.json()) 
+        .then(res => { 
+            console.log("TCL: res", res); 
+            return resolve({ ...res }); 
+        }) 
+        .catch(({ response }) => { 
+            console.log("TCL: response", response); 
+            return reject({ ...response.message }); 
+        }); 
     });
 };
 
 const postFunc = (path, payload) => {
     return new Promise((resolve, reject) => {
-        axios.post(baseURL + path, payload)
-        .then(res => {
-            return resolve({ ...res });
-        })
-        .catch(({ response }) => {
-            return reject({ response });
-        });
+        fetch(`${baseURL}${path}`, { 
+            method: "POST", 
+            headers: { 
+                "Content-Type": "application/json", 
+            }, 
+            body: JSON.stringify(payload) 
+        }) 
+        .then(res => res.json()) 
+        .then(res => { 
+            console.log("TCL: res", res.message); 
+            return resolve({ ...res }); 
+        }) 
+        .catch(({ response }) => { 
+            console.log("TCL: response", response); 
+            return reject({ response }); 
+        }); 
     });
 };
 
 const putFunc = (path, payload) => {
+    const token = `Bearer ${localStorage.getItem("token")}`; 
     return new Promise((resolve, reject) => {
-        axios.put(baseURL + path, payload)
-        .then(res => {
-            return resolve({ ...res });
-        })
-        .catch(({ response }) => {
-            return reject({ response });
-        });
+        fetch(`${baseURL}${path}`, { 
+            method: "PUT", 
+            headers: { 
+                "Content-Type": "application/json",
+                Authorization: token 
+            }, 
+            body: JSON.stringify(payload) 
+        }) 
+        .then(res => res.json()) 
+        .then(res => { 
+            console.log("TCL: res", res); 
+            return resolve({ ...res }); 
+        }) 
+        .catch(({ response }) => { 
+            console.log("TCL: response", response); 
+            return reject({ response }); 
+        }); 
     });
 };
 

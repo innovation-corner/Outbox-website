@@ -1,9 +1,9 @@
 import { getFunc, postFunc } from "./httpService";
 
-export const loginService = (payload) => {
-    return postFunc(`login`, payload);
+export const loginService = payload => {
+    return postFunc(`auth/login`, payload);
 };
 
-export const registerService = () => {
-    return postFunc('register');
+export const registerService = payload => {
+    return postFunc('auth/register', payload);
 };

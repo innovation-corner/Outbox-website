@@ -19,7 +19,7 @@ export const authReducer = (state = initialState, action) => {
             return { 
                 ...state, 
                 message: message 
-            }; 
+            };             
         case LOGOUT: 
             return { 
                 ...state, 

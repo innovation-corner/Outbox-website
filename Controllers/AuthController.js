@@ -53,7 +53,11 @@ module.exports = {
 
       Email.registrationEmail(emailData);
 
-      return res.status(200).json({ message: "registration successful", user });
+      return res.status(200).json({
+        success: true,
+        message: "registration successful", 
+        user 
+      });
     } catch (error) {
       return res.status(400).json({ message: "an error occured", error });
     }
