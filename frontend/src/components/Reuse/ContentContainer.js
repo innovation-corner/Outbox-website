@@ -1,16 +1,14 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-export const Breadcrumps = ({ children }) => {
+export const ContentContainer = ({ children }) => {
     return (
-        <Fragment>
-            <div id="container" className="kt-container kt-container--fluid  kt-grid__item kt-grid__item--fluid">
-                {children}
-            </div>
-        </Fragment>
+        <div className="kt-container kt-container--fluid  kt-grid__item kt-grid__item--fluid" id="container">
+            {children}
+        </div>
     );
 };
 
-Breadcrumps.propTypes = {
+ContentContainer.propTypes = {
     // children: PropTypes.string.isRequired
 };

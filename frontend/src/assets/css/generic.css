@@ -5,12 +5,11 @@
 }
 
 #kt_aside_menu .kt-menu__nav {
-
     margin-top: 40px !important;
 }
 
 #kt_aside_menu .kt-menu__nav .kt-menu__item  {
-    padding: 30px !important;
+    padding: 40px !important;
 }
 
 #kt_aside_menu .kt-menu__nav .kt-menu__item .kt-menu__link-icon {
@@ -47,11 +46,6 @@
 .kt-content .kt-subheader__main h2 {
     color: #191B3F;
     font-weight: 600;
-}
-
-.kt-content #kt_subheader  {
-    border-bottom: 1px solid #DEDEDF !important;
-    padding: 20px !important;
 }
 
 #container {
@@ -137,31 +131,5 @@
     font-weight: 600;
     margin-bottom: 2px;
     color: #191B3F;
-}
-
-/* login style **/
-.kt-login__container button {
-    background-color: #7540EE;
-    color: white;
-    border: 0;
-}
-
-.kt-login__container button:hover {
-    background-color: white;
-    color: #7540EE;
-    border: 1px solid #7540EE;
-}
-
-/* signup styles **/
-.kt-signup__body .signup {
-    background-color: #7540EE;
-    color: white;
-    border: 0;
-}
-
-.kt-signup__body .cancel {
-    background-color: white;
-    color: #7540EE;
-    border: 1px solid #7540EE;
 }
 

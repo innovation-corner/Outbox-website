@@ -9,6 +9,7 @@ import {
     Button
 } from 'reactstrap';
 import TopNavBar from '../NavBar/index';
+import { Loader } from '../Reuse/Loader';
 import BackgroundSlideshow from 'react-background-slideshow';
 import image1 from '../../assets/images/background-1.jpeg';
 import image2 from '../../assets/images/background-2.jpeg';
@@ -119,7 +120,7 @@ class LoginView extends Component {
                                                 <FormGroup>
                                                     { 
                                                         isLoading ? 
-                                                        ("Loading") : 
+                                                        (<Loader color="primary" />) : 
                                                         (<Button color="primary" type="submit">Sign Up</Button>)
                                                     }
                                                 </FormGroup> 
@@ -163,7 +164,7 @@ class LoginView extends Component {
                                                 <FormGroup>
                                                     { 
                                                         isLoading ? 
-                                                        ("Loading") : 
+                                                        (<Loader color="primary" />) : 
                                                         (<Button color="primary" type="submit">Login</Button>)
                                                     }
                                                 </FormGroup>

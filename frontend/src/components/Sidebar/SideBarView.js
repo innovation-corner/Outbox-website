@@ -1,45 +1,57 @@
 import React, { Fragment } from 'react';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
-import { FaBeer } from 'react-icons/fa';
+import { 
+    IoIosList, 
+    IoIosStats, 
+    IoIosHome,
+    IoIosPin,
+    IoIosCopy,
+    IoIosContacts
+} from 'react-icons/io';
 import PropTypes from 'prop-types';
 import { styles } from './styles';
 
 export const SideBarView = ({}) => {
     return (
         <Fragment>
-            <button className={classNames('kt-aside-close')} id="kt_aside_close_btn">
-                <i className={classNames('la la-close')}></i>
+            <button className='kt-aside-close' id="kt_aside_close_btn">
+                <i className='la la-close'></i>
             </button>
-            <div className={classNames('kt-aside  kt-aside--fixed  kt-grid__item kt-grid kt-grid--desktop kt-grid--hor-desktop')}>
-                <div className={classNames("kt-aside__brand kt-grid__item")} id="kt_aside_brand">
-                    <div className={classNames("kt-aside__brand-logo")}>
-                        <Link to="javascript:;" className={classNames("kt-menu__link")} style={{fontSize: '25px'}}>
-                            <i className={classNames("kt-menu__link-icon flaticon2-soft-icons")}></i>
+            <div className='kt-aside kt-aside--fixed kt-grid__item kt-grid kt-grid--desktop kt-grid--hor-desktop'>
+                <div className="kt-aside__brand kt-grid__item" id="kt_aside_brand">
+                    <div className="kt-aside__brand-logo">
+                        <Link to="#" className="kt-menu__link" style={{fontSize: '30px', color: '#000'}}>
+                            <IoIosList />
                         </Link>
                     </div>
                 </div>
-                <div className={classNames("kt-aside-menu-wrapper kt-grid__item kt-grid__item--fluid")} id="kt_aside_menu_wrapper">
-                    <div id="kt_aside_menu" className={classNames("kt-aside-menu kt-aside-menu--dropdown")}>		
-                        <ul className={styles.menuNav}>
-                            <li className={classNames(styles.menuNavItem, styles.menuNavItemActive, "active kt-menu__item--submenu kt-menu__item--submenu-fullheight kt-menu__item--open kt-menu__item--here")}>
-                                <Link to="javascript:;" className={classNames("kt-menu__link")}>
-                                    <FaBeer className={classNames(styles.menuNavItemIcon, "active")} />
+                <div className="kt-aside-menu-wrapper kt-grid__item kt-grid__item--fluid" id="kt_aside_menu_wrapper">
+                    <div id="kt_aside_menu" className="kt-aside-menu kt-aside-menu--dropdown">		
+                        <ul className="kt-menu__nav">
+                            <li className="kt-menu__item active kt-menu__item--submenu kt-menu__item--submenu-fullheight kt-menu__item--open kt-menu__item--here">
+                                <Link to="javascript:;" className="kt-menu__link">
+                                    <IoIosHome className="kt-menu__link-icon active" style={{fontSize: '15px'}}/>
                                 </Link>
                             </li>
-                            <li className={classNames(styles.menuNavItem, styles.menuNavItemActive, "kt-menu__item--submenu-fullheight kt-menu__item--open kt-menu__item--here")}>
-                                <Link to="javascript:;" className="kt-menu__link">
-                                    <i className={classNames(styles.menuNavItemIcon, "flaticon-squares-4")}></i>
+                            <li style={{fontSize: '15px'}} className="kt-menu__item kt-menu__item--submenu kt-menu__item--submenu-fullheight kt-menu__item--open kt-menu__item--here">
+                                <Link to="javascript:;" className="kt-menu__link" style={{fontSize: '15px'}}>
+                                    <IoIosStats className="kt-menu__link-icon" />
                                 </Link>
                             </li>
-                            <li className={classNames(styles.menuNavItem, styles.menuNavItemActive, "kt-menu__item kt-menu__item--submenu kt-menu__item--submenu-fullheight kt-menu__item--open kt-menu__item--here")}>
+                            <li className="kt-menu__item kt-menu__item--submenu kt-menu__item--submenu-fullheight kt-menu__item--open kt-menu__item--here">
                                 <Link to="javascript:;" className="kt-menu__link">
-                                    <i className={classNames(styles.menuNavItemIcon, "flaticon-file-1")}></i>
+                                    <IoIosPin className="kt-menu__link-icon" />
                                 </Link>
                             </li>
-                            <li className={classNames(styles.menuNavItem, styles.menuNavItemActive, "kt-menu__item kt-menu__item--submenu kt-menu__item--submenu-fullheight kt-menu__item--open kt-menu__item--here")}>
+                            <li className="kt-menu__item kt-menu__item--submenu kt-menu__item--submenu-fullheight kt-menu__item--open kt-menu__item--here">
+                                <Link to="javascript:;" className="kt-menu__link" >
+                                    <IoIosCopy className="kt-menu__link-icon" style={{fontSize: '15px'}}/>
+                                </Link>
+                            </li>
+                            <li className="kt-menu__item kt-menu__item--submenu kt-menu__item--submenu-fullheight kt-menu__item--open kt-menu__item--here">
                                 <Link to="javascript:;" className="kt-menu__link">
-                                    <i className={classNames(styles.menuNavItemIcon, "kt-menu__link-icon flaticon-user")}></i>
+                                    <IoIosContacts className="kt-menu__link-icon" />
                                 </Link>
                             </li>
                         </ul>

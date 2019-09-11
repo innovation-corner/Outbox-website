@@ -9,23 +9,21 @@ import Room1 from '../../../assets/images/room-1.png';
 class DashboardView extends Component {
     render() {
         return (
-            <Fragment>
-                <LayoutView>
-                    <Breadcrumps title="Home" />
-                    <ContentContainer>
-                        <div className="row first" style={{marginBottom: '40px'}}>
-                            <div className="col">Date</div>
-                            <div className="col">Time</div>
-                            <div className="col">Duration</div>
-                            <div className="col active">Find Room</div>
-                        </div>
-                        <h4>Currently Available Rooms</h4>
-                        <div className="row room" style={{marginBottom: '40px'}}>
-                            <RoomCard title="Board Room Lounge VIP" image={Room1} />
-                        </div>
-                    </ContentContainer>
-                </LayoutView>
-            </Fragment>
+            <LayoutView>
+                <Breadcrumps title="Home" />
+                <ContentContainer>
+                    <div className="row first" style={{marginBottom: '40px'}}>
+                        <div className="col">Date</div>
+                        <div className="col">Time</div>
+                        <div className="col">Duration</div>
+                        <div className="col active">Find Room</div>
+                    </div>
+                    <h4>Currently Available Rooms</h4>
+                    <div className="row room" style={{marginBottom: '40px'}}>
+                        <RoomCard title="Board Room Lounge VIP" image={Room1} />
+                    </div>
+                </ContentContainer>
+            </LayoutView>
         );
     };
 };

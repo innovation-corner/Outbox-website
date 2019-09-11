@@ -43312,7 +43312,7 @@ body {
         align-items: center;
         flex: 0 0 33px;
         padding: 0;
-        font-size: 1.4rem
+        font-size: 16px
     }
     .kt-header-menu .kt-menu__nav>.kt-menu__item .kt-menu__inner>.kt-menu__item .kt-menu__link .kt-menu__link-bullet,
     .kt-header-menu .kt-menu__nav>.kt-menu__item .kt-menu__subnav>.kt-menu__item .kt-menu__link .kt-menu__link-bullet {
@@ -43368,7 +43368,7 @@ body {
         transition: all .3s ease
     }
     .kt-header-menu .kt-menu__nav>.kt-menu__item>.kt-menu__link .kt-menu__link-icon {
-        font-size: 1.4rem;
+        font-size: 14px;
         width: 30px;
         padding: 0;
         line-height: 0
