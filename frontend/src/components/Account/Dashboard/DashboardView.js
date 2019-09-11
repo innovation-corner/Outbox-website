@@ -18,6 +18,7 @@ class DashboardView extends Component {
                         <div className="col">Duration</div>
                         <div className="col active">Find Room</div>
                     </div>
+                    
                     <h4>Currently Available Rooms</h4>
                     <div className="row room" style={{marginBottom: '40px'}}>
                         <RoomCard title="Board Room Lounge VIP" image={Room1} />

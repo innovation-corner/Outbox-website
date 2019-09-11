@@ -1,25 +1,13 @@
 import React, { Fragment, Component } from 'react';
-import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { TopBarView } from '../../TopBar/TopBarView';
+import TopBarView from '../../TopBar/TopBarView';
 import { SideBarView } from '../../Sidebar/SideBarView';
-// import '../../../assets/css/vendors.bundle.css';
 import '../../../assets/css/generic.css';
 import '../../../assets/css/style.bundle.css';
 import { styles } from './styles';
 
 export class LayoutView extends Component {
-
-    componentDidMount() {
-        const script = document.createElement("script");
-        script.src = "../../../assets/js/scripts.bundle.js";
-        script.async = true;
-        // script.onload = () => this.scriptLoaded();
-
-        document.body.appendChild(script);
-    };
-
     render() {
         const { children } = this.props;
 
@@ -47,19 +35,18 @@ export class LayoutView extends Component {
 
                             <div className="kt-content kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content" style={{backgroundColor: '#fff'}}>
                                 {children}
-
-                                {/* <div className="kt-footer kt-grid__item kt-grid kt-grid--desktop kt-grid--ver-desktop" id="kt_footer">
-                                    <div className="kt-container kt-container--fluid ">
-                                        <div className="kt-footer__copyright">
-                                            2019&nbsp;&copy;&nbsp;<a href="#" target="_blank" className="kt-link">Outbox. All Rights Reserved.</a>
-                                        </div>
-                                        <div className="kt-footer__menu">
-                                            <a href="#" target="_blank" className="kt-footer__menu-link kt-link">About</a>
-                                            <a href="#" target="_blank" className="kt-footer__menu-link kt-link">Documentation</a>
-                                            <a href="#" target="_blank" className="kt-footer__menu-link kt-link">Contact</a>
-                                        </div>
+                            </div>
+                            <div className="kt-footer kt-grid__item kt-grid kt-grid--desktop kt-grid--ver-desktop" id="kt_footer">
+                                <div className="kt-container kt-container--fluid ">
+                                    <div className="kt-footer__copyright">
+                                        2019&nbsp;&copy;&nbsp;<Link to="#" target="_blank" className="kt-link">Outbox. All Rights Reserved.</Link>
                                     </div>
-                                </div> */}
+                                    <div className="kt-footer__menu">
+                                        <Link to="#" target="_blank" className="kt-footer__menu-link kt-link">About</Link>
+                                        <Link to="#" target="_blank" className="kt-footer__menu-link kt-link">Documentation</Link>
+                                        <Link to="#" target="_blank" className="kt-footer__menu-link kt-link">Contact</Link>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

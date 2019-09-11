@@ -41,6 +41,7 @@ export const login = data => {
           localStorage.setItem("token", response.payload.token); 
           dispatch(stopLoading());
           dispatch({type: LOGIN_SUCCESS, payload: response.payload.user});
+          // alert(JSON.stringify(response.payload.user))
           dispatch(push('/dashboard'));
         } else {
           alert(response.message);
@@ -57,7 +58,8 @@ export const login = data => {
   
 export function logout() {
   return (dispatch, getState) => {
-    
-  }
+    //clear token from localstorage and cookie
+    dispatch(push('/'));
+  };
 };
   

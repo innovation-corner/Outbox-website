@@ -1,14 +1,10 @@
 import React, { Fragment, Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { logout } from '../../store/actions/authActions';
 import { Link } from 'react-router-dom';
 import {
-    Collapse,
-    Navbar,
-    NavbarToggler,
-    NavbarBrand,
     Nav,
-    NavItem,
-    NavLink,
     UncontrolledDropdown,
     DropdownToggle,
     DropdownMenu,
@@ -23,8 +19,10 @@ import Logo from '../../assets/images/logo-1.png';
 import User from '../../assets/images/user.png';
 import { styles } from './styles';
 
-export class TopBarView extends Component {
+class TopBarView extends Component {
     render() {
+        const { userData, logout } = this.props;
+
         return (
             <Fragment>
                 <div id="kt_header" className="kt-header kt-grid kt-grid--ver  kt-header--fixed " >
@@ -94,7 +92,7 @@ export class TopBarView extends Component {
                                                 <DropdownItem>Settings</DropdownItem>
                                                 <DropdownItem>Password Reset</DropdownItem>
                                                 <DropdownItem divider />
-                                                <DropdownItem>Logout</DropdownItem>
+                                                <DropdownItem onClick={() => logout()}>Logout</DropdownItem>
                                             </DropdownMenu>
                                         </UncontrolledDropdown>
                                     </Nav>
@@ -110,4 +108,15 @@ export class TopBarView extends Component {
 
 TopBarView.propTypes = {
 
-}
+};
+
+const mapStateToProps = state => ({
+    userData: state.auth.userData
+});
+
+const mapStateToDispatch = dispatch => ({
+    logout: () => dispatch(logout())
+});
+
+export default connect(mapStateToProps, mapStateToDispatch)(TopBarView);
+

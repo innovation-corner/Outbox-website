@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 export const RoomCard = ({ title, image, users }) => {
     return (
         <Fragment>
-            <div className="col-md-3">
+            <div className="col-md-4">
                 <div className="col-md-12 room-col">
                     <div className="card">
                         <div className="row">
@@ -15,24 +15,24 @@ export const RoomCard = ({ title, image, users }) => {
                             <div className="col-md-8 background-content card-body">
                                 <p>{title}</p>
                                 <p>
-                                    <Link to="javascript:;" className="kt-menu__link icon-link mr-1">
+                                    <Link to="#" className="kt-menu__link icon-link mr-1">
                                         <i className="kt-menu__link-icon flaticon-home"></i>
                                     </Link>
-                                    <Link to="javascript:;" className="kt-menu__link icon-link mr-1">
+                                    <Link to="#" className="kt-menu__link icon-link mr-1">
                                         <i className="kt-menu__link-icon flaticon-home"></i>
                                     </Link>
-                                    <Link to="javascript:;" className="kt-menu__link icon-link mr-1">
+                                    <Link to="#" className="kt-menu__link icon-link mr-1">
                                         <i className="kt-menu__link-icon flaticon-home"></i>
                                     </Link>
-                                    <Link to="javascript:;" className="kt-menu__link icon-link mr-1">
+                                    <Link to="#" className="kt-menu__link icon-link mr-1">
                                         <i className="kt-menu__link-icon flaticon-home"></i>
                                     </Link>
-                                    <Link to="javascript:;" className="kt-menu__link icon-link mr-1">
+                                    <Link to="#" className="kt-menu__link icon-link mr-1">
                                         <i className="kt-menu__link-icon flaticon-home"></i>
                                     </Link>
                                 </p>
                                 <p>
-                                    <Link to="javascript:;" className="kt-menu__link user-link">
+                                    <Link to="#" className="kt-menu__link user-link">
                                         <i class="kt-menu__link-icon flaticon-home"></i> Fits 7 persons
                                     </Link>
                                 </p>

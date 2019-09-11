@@ -48,6 +48,11 @@
     font-weight: 600;
 }
 
+.kt-content #kt_subheader {
+    border-bottom: 1px solid #DEDEDF !important;
+    padding: 20px !important;
+}
+
 #container {
     padding: 30px;
 }
@@ -124,6 +129,7 @@
 
 #container .upcoming-booking-sec .card {
     padding: 20px;
+    border-radius: 10px;
 }
 
 #container .upcoming-booking-sec p {
