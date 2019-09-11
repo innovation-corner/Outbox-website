@@ -10,6 +10,8 @@ import {
 } from 'reactstrap';
 import TopNavBar from '../NavBar/index';
 import { Loader } from '../Reuse/Loader';
+import InputField from '../Reuse/InputField/InputField';
+import { validatePassword, validateEmail } from '../../utils/regexValidation';
 import BackgroundSlideshow from 'react-background-slideshow';
 import image1 from '../../assets/images/background-1.jpeg';
 import image2 from '../../assets/images/background-2.jpeg';
@@ -25,13 +27,26 @@ class LoginView extends Component {
             firstName: "",
             lastName: "",
             showReg: false,
-            type: "password"
+            type: "password",
+            error: {} 
         };
     };
 
-    handleChange = (e) => {
+    componentDidMount() { 
+        this.props.onReset(); 
+    };
+
+    emailInputChange= ({ target: { value, name } }) => {
+        validateEmail("emailErr", value, this);
         this.setState({
-            [e.target.name]: e.target.value
+            email: value
+        });
+    };
+
+    handleInputChange = ({ target: { value, name } }) => {
+        validatePassword("passwordErr", value, this);
+        this.setState({
+            [name]: value
         });
     };
 
@@ -48,7 +63,7 @@ class LoginView extends Component {
 
     handleSignUp = (e) => {
         e.preventDefault();
-        const { onRegister } = this.props;
+        const { onRegister, onReset } = this.props;
         const payload = {
             businessName: this.state.businessName,
             email: this.state.email,
@@ -56,6 +71,7 @@ class LoginView extends Component {
             firstName: this.state.firstName,
             lastName: this.state.lastName
         };
+        onReset();
         onRegister(payload);
     };
 
@@ -70,7 +86,10 @@ class LoginView extends Component {
     };
 
     render() {
-        const { isLoading } = this.props;
+        const { isLoading, message } = this.props;
+        const { 
+            error: { passwordErr } 
+        } = this.state;
         return (
             <div>
                 <div className="content-container">
@@ -90,53 +109,86 @@ class LoginView extends Component {
                                         </div>
                                         <Form className="form-content" onSubmit={this.handleSignUp}>
                                             <FormGroup>
-                                                <Input 
-                                                    type="text" 
-                                                    name="firstName" 
-                                                    placeholder="First Name" 
-                                                    onChange={this.handleChange}
-                                                    value={this.state.firstName}
-                                                />
+                                                <InputField 
+                                                    fieldName="firstName" 
+                                                    fieldType="text" 
+                                                    fieldValue={this.state.firstName} 
+                                                    onChangeField={ 
+                                                        this.handleInputChange 
+                                                    }
+                                                    placeholder="First Name"
+                                                    error={message} 
+                                                /> 
+                                                {message && ( 
+                                                    <small style={{ color: "red" }}> 
+                                                        {message} 
+                                                    </small> 
+                                                )} 
                                             </FormGroup>
                                             <FormGroup>
-                                                <Input 
-                                                    type="text" 
-                                                    name="lastName" 
-                                                    placeholder="Last Name" 
-                                                    onChange={this.handleChange}
-                                                    value={this.state.lastName}
-                                                />
+                                            <InputField 
+                                                    fieldName="lastName" 
+                                                    fieldType="text" 
+                                                    fieldValue={this.state.lastName} 
+                                                    onChangeField={ 
+                                                        this.handleInputChange 
+                                                    }
+                                                    placeholder="Last Name"
+                                                    error={message} 
+                                                /> 
+                                                {message && ( 
+                                                    <small style={{ color: "red" }}> 
+                                                        {message} 
+                                                    </small> 
+                                                )} 
                                             </FormGroup>
                                             <FormGroup>
-                                                <Input 
-                                                    type="text" 
-                                                    name="businessName" 
-                                                    placeholder="Business name" 
-                                                    onChange={this.handleChange}
-                                                    value={this.state.businessName}
-                                                />
+                                                <InputField 
+                                                    fieldName="businessName" 
+                                                    fieldType="text" 
+                                                    fieldValue={this.state.businessName} 
+                                                    onChangeField={ 
+                                                        this.handleInputChange 
+                                                    }
+                                                    placeholder="Business Name"
+                                                    error={message} 
+                                                /> 
+                                                
                                             </FormGroup>
                                             <FormGroup>
-                                                <Input 
-                                                    type="email" 
-                                                    name="email" 
-                                                    placeholder="Email address" 
-                                                    onChange={this.handleChange} 
-                                                    valaue={this.state.email}
+                                                <InputField 
+                                                    fieldName="email" 
+                                                    fieldType="email" 
+                                                    fieldValue={this.state.email} 
+                                                    onChangeField={ 
+                                                        this.emailInputChange 
+                                                    }
+                                                    placeholder="Email Address"
+                                                    error={message || this.state.error.emailErr} 
                                                 />
+                                                {this.state.error.emailErr && ( 
+                                                    <small style={{ color: "red" }}> 
+                                                        {this.state.error.emailErr} 
+                                                    </small> 
+                                                )} 
                                             </FormGroup>
                                             <FormGroup>
-                                                <Input 
-                                                    type={this.state.type} 
-                                                    name="password" 
-                                                    placeholder="Password" 
-                                                    onChange={this.handleChange} 
-                                                    value={this.state.password}
-                                                />
-                                                <span
-                                                    className="fa fa-fw fa-eye field-icon toggle-password"
-                                                    onClick={this.showHidePassword}
-                                                />
+                                                <InputField 
+                                                    fieldName="password" 
+                                                    fieldType={this.state.type} 
+                                                    fieldValue={this.state.password} 
+                                                    onChangeField={ 
+                                                        this.handleInputChange 
+                                                    } 
+                                                    show 
+                                                    onShowPassword={this.showHidePassword} 
+                                                    error={message || passwordErr} 
+                                                /> 
+                                                {passwordErr && ( 
+                                                    <small style={{ color: "red" }}> 
+                                                        {passwordErr} 
+                                                    </small> 
+                                                )} 
                                             </FormGroup>
                                             <div className="form-footer">
                                                 <FormGroup>
@@ -161,26 +213,27 @@ class LoginView extends Component {
                                         </div>
                                         <Form className="form-content" onSubmit={this.handleSignIn}>
                                             <FormGroup>
-                                                <Input 
-                                                    type="email" 
-                                                    name="email" 
-                                                    placeholder="Email address"
-                                                    onChange={this.handleChange}
-                                                    value={this.state.email}
+                                                <InputField 
+                                                    fieldName="email" 
+                                                    fieldType="email" 
+                                                    fieldValue={this.state.email} 
+                                                    onChangeField={ 
+                                                        this.emailInputChange 
+                                                    }
+                                                    placeholder="Email Address"
                                                 />
                                             </FormGroup>
                                             <FormGroup>
-                                                <Input 
-                                                    type={this.state.type}
-                                                    name="password" 
-                                                    placeholder="Password"
-                                                    onChange={this.handleChange}
-                                                    value={this.state.password}
-                                                />
-                                                <span
-                                                    className="fa fa-fw fa-eye field-icon toggle-password"
-                                                    onClick={this.showHidePassword}
-                                                />
+                                                <InputField 
+                                                    fieldName="password" 
+                                                    fieldType={this.state.type} 
+                                                    fieldValue={this.state.password} 
+                                                    onChangeField={ 
+                                                        this.handleInputChange 
+                                                    } 
+                                                    show 
+                                                    onShowPassword={this.showHidePassword} 
+                                                /> 
                                             </FormGroup>
                                             <div className="form-footer">
                                                 <FormGroup>

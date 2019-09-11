@@ -1,8 +1,8 @@
 import React from "react"; 
 import PropTypes from "prop-types"; 
-// import "./InputField.scss"; 
-// import { eye, eyeSlash } from "react-icons-kit/fa"; 
-// import { Icon } from "react-icons-kit"; 
+import "./InputField.scss"; 
+import { eye, eyeSlash } from "react-icons-kit/fa";
+import { Icon } from "react-icons-kit"; 
 const InputField = ({ 
     fieldName, 
     fieldType, 
@@ -29,7 +29,7 @@ const InputField = ({
                 /> 
  
                 <span className="toggle-password-icon" onClick={onShowPassword}> 
-                    {/* <Icon icon={eyeSlash} size={20} />  */}
+                    <Icon icon={eyeSlash} size={20} /> 
                 </span> 
             </div> 
         ); 
@@ -41,9 +41,7 @@ const InputField = ({
                     className={`form-control input-field ${ 
                         error ? "error" : "" 
                     }`} 
-                    placeholder={ 
-                        fieldName === "email" ? "Enter your email address" : "" 
-                    } 
+                    placeholder={placeholder} 
                     name={fieldName} 
                     value={fieldValue} 
                     onChange={onChangeField} 
@@ -52,7 +50,7 @@ const InputField = ({
                     <span 
                         className="toggle-password-icon" 
                         onClick={onShowPassword}> 
-                        {/* <Icon icon={eye} size={20} />  */}
+                        <Icon icon={eye} size={20} /> 
                     </span> 
                 ) : null} 
             </div> 
