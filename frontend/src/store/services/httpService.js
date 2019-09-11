@@ -1,4 +1,4 @@
-const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:5000/api/v1/' : "" ;
+const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:5000/api/v1/' : "https://outbox-app.herokuapp.com/api/v1/" ;
 
 const getFunc = (path, payload) => {
     const token = `Bearer ${localStorage.getItem("token")}`
