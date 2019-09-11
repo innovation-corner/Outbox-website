@@ -22,7 +22,6 @@ import { styles } from './styles';
 class TopBarView extends Component {
     render() {
         const { userData, logout } = this.props;
-
         return (
             <Fragment>
                 <div id="kt_header" className="kt-header kt-grid kt-grid--ver  kt-header--fixed " >
@@ -74,14 +73,14 @@ class TopBarView extends Component {
                         </div>
                         <div className="kt-header__topbar-item">
                             <div className="kt-header__topbar-wrapper" style={{backgroundColor: '#fff', color: '#000', fontSize: '15px'}}>
-                                <span className="kt-header__topbar-icon kt-header__topbar-icon--success" style={{backgroundColor: '#fff', color: '#000', width: 'auto'}}>Jammie Lannister</span>
+                                <span className="kt-header__topbar-icon kt-header__topbar-icon--success" style={{backgroundColor: '#fff', color: '#000', width: 'auto'}}>{`${userData.firstName} ${userData.lastName}`}</span>
                                 <span className="kt-hidden kt-badge kt-badge--danger"></span>
                             </div>
                         </div>
                         <div className="kt-header__topbar-item kt-header__topbar-item--user">
                             <div className="kt-header__topbar-wrapper">	
                                 <span className="kt-hidden kt-header__topbar-welcome">Hi,</span>
-                                <span className="kt-hidden kt-header__topbar-username">Nick</span>
+                                <span className="kt-hidden kt-header__topbar-username">{`${userData.firstName}`}</span>
                                 <img className="" alt="profile-pic" src={User}/>
                                 <span className="kt-header__topbar-icon" style={{backgroundColor: '#fff', color: '#000'}}>
                                     <Nav className="ml-auto" navbar>

@@ -3,7 +3,8 @@ import {
     LOGIN_SUCCESS,
     LOGOUT,
     START_LOADING,
-    STOP_LOADING
+    STOP_LOADING,
+    RESET
 } from '../actionTypes';
 import { initialState } from '../initialState';
 
@@ -33,7 +34,12 @@ export const authReducer = (state = initialState, action) => {
             return { 
                 ...state, 
                 isLoading: false 
-            }; 
+            };
+        case RESET:
+            return {
+                ...state,
+                message: null
+            };
         default: 
             return state; 
     } 

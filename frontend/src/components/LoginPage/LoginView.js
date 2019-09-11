@@ -22,6 +22,8 @@ class LoginView extends Component {
             email: "",
             password: "",
             businessName: "",
+            firstName: "",
+            lastName: "",
             showReg: false,
             type: "password"
         };
@@ -50,7 +52,9 @@ class LoginView extends Component {
         const payload = {
             businessName: this.state.businessName,
             email: this.state.email,
-            password: this.state.password
+            password: this.state.password,
+            firstName: this.state.firstName,
+            lastName: this.state.lastName
         };
         onRegister(payload);
     };
@@ -85,6 +89,24 @@ class LoginView extends Component {
                                             </p>
                                         </div>
                                         <Form className="form-content" onSubmit={this.handleSignUp}>
+                                            <FormGroup>
+                                                <Input 
+                                                    type="text" 
+                                                    name="firstName" 
+                                                    placeholder="First Name" 
+                                                    onChange={this.handleChange}
+                                                    value={this.state.firstName}
+                                                />
+                                            </FormGroup>
+                                            <FormGroup>
+                                                <Input 
+                                                    type="text" 
+                                                    name="lastName" 
+                                                    placeholder="Last Name" 
+                                                    onChange={this.handleChange}
+                                                    value={this.state.lastName}
+                                                />
+                                            </FormGroup>
                                             <FormGroup>
                                                 <Input 
                                                     type="text" 

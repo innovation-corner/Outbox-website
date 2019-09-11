@@ -8,3 +8,4 @@ export const REGISTER_FAILURE = 'REGISTER_FAILURE';
 
 export const START_LOADING = 'START_LOADING';
 export const STOP_LOADING = 'STOP_LOADING';
+export const RESET = 'RESET';
