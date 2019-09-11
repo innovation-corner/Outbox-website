@@ -86,23 +86,6 @@
     object-fit: cover;
 }
 
-#container .background-content {
-    padding: 10px;
-}
-
-#container .background-content .icon-link {
-    padding: 5px;
-    border-radius: 30%;
-    border: 1px solid #ccc;
-    color: #ccc;
-    font-size: 12px;
-}
-
-#container .background-content .user-link {
-    color: #ccc;
-    font-size: 12px;
-}
-
 #container .background-content button {
     border: 1px solid #7540EE;
 }
@@ -112,11 +95,6 @@
     color: white;
 }
 
-#container .background-content p {
-    font-weight: 600;
-    font-size: 15px;
-    color: #191B3F;
-}
 
 #container .upcoming-booking-sec {
     padding: 10px;
