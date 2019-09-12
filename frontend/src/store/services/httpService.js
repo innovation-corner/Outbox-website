@@ -9,7 +9,7 @@ const getFunc = (path, payload) => {
                 "Content-Type": "application/json", 
                 Authorization: token 
             }, 
-            body: JSON.stringify(payload) 
+            // body: JSON.stringify(payload) 
         }) 
         .then(res => res.json()) 
         .then(res => { 
@@ -66,6 +66,27 @@ const postFunc = (path, payload) => {
     });
 };
 
+const singlePostFunc = (path, payload) => {
+    return new Promise((resolve, reject) => {
+        fetch(`${baseURL}${path}`, { 
+            method: "POST", 
+            headers: { 
+                "Content-Type": "application/json", 
+            }, 
+            // body: JSON.stringify(payload) 
+        }) 
+        .then(res => res.json()) 
+        .then(res => { 
+            console.log("TCL: res", res.message); 
+            return resolve({ ...res }); 
+        }) 
+        .catch(({ response }) => { 
+            console.log("TCL: response", response); 
+            return reject({ response }); 
+        }); 
+    });
+};
+
 const putFunc = (path, payload) => {
     const token = `Bearer ${localStorage.getItem("token")}`; 
     return new Promise((resolve, reject) => {
@@ -89,4 +110,4 @@ const putFunc = (path, payload) => {
     });
 };
 
-export { getFunc, delFunc, postFunc, putFunc };
+export { getFunc, delFunc, postFunc, singlePostFunc, putFunc };

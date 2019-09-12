@@ -1,5 +1,6 @@
 export const initialState = {
     isLoading: false,
     message: null,
-    userData: {}
+    userData: {},
+    isVerified: false
 };

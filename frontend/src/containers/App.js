@@ -14,7 +14,7 @@ class App extends Component {
       <ConnectedRouter history={history}>
           <Switch>
             <Route path='/' exact={true} component={LoginPage} />
-            <Route path='/email-confirmation' component={ConfirmationView} />
+            <Route path='/email-confirmation/:token' component={ConfirmationView} />
             <PrivateRoute path='/dashboard' component={DashboardView} />
           </Switch>
       </ConnectedRouter>

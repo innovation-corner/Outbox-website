@@ -83,7 +83,8 @@ module.exports = {
       const responseObj = { user, token };
       return res
         .status(200)
-        .json({ message: "verification successful", responseObj });
+        .json({ message: "verification successful", success: true, responseObj });
+
     } catch (error) {
       return res.status(400).json({ message: "an error occured", error });
     }
@@ -166,10 +167,11 @@ module.exports = {
       const user = await User.findOne({ where: verificationCode });
 
       if (!user) {
-        return res.status(400).json({ message: "invailid code" });
+        return res.status(400).json({ message: "invalid code" });
       }
 
-      return res.status(200).json({ message: "valid code", user });
+      return res.status(200).json({ 
+        message: "valid code", user });
     } catch (error) {
       return res.status(400).json({ message: "An error occured" });
     }
