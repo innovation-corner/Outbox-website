@@ -11,3 +11,4 @@ export const STOP_LOADING = 'STOP_LOADING';
 export const RESET = 'RESET';
 
 export const VERIFY_USER = 'VERIFY_USER';
+export const UPDATE_ALERT = 'UPDATE_ALERT';
