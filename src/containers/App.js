@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 import { history } from '../store/configureStore';
 
@@ -12,11 +12,12 @@ class App extends Component {
   render() {
     return (
       <ConnectedRouter history={history}>
-          <Switch>
-            <Route path='/' exact={true} component={LoginPage} />
-            <Route path='/email-confirmation/:token' component={ConfirmationView} />
-            <PrivateRoute path='/dashboard' component={DashboardView} />
-          </Switch>
+        <Switch>
+          <Route exact path='/' component={LoginPage} />
+          <Route exact path='/email-confirmation/:token' component={ConfirmationView} />
+          <PrivateRoute path='/dashboard' component={DashboardView} />
+          <Redirect from='*' to='/'/>
+        </Switch>
       </ConnectedRouter>
     );
   }
