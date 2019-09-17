@@ -1,4 +1,4 @@
-const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:5000/api/v1/' : "https://outbox-app.herokuapp.com/api/v1/" ;
+const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:8080/api/v1/' : "https://outbox-app.herokuapp.com/api/v1/" ;
 
 const getFunc = (path, payload) => {
     const token = `Bearer ${localStorage.getItem("token")}`
@@ -9,7 +9,6 @@ const getFunc = (path, payload) => {
                 "Content-Type": "application/json", 
                 Authorization: token 
             }, 
-            // body: JSON.stringify(payload) 
         }) 
         .then(res => res.json()) 
         .then(res => { 

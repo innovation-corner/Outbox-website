@@ -11,6 +11,7 @@ import {
 import TopNavBar from '../NavBar/index';
 import { Loader } from '../Reuse/Loader';
 import InputField from '../Reuse/InputField/InputField';
+import AlertSystem from '../Reuse/AlertSystem';
 import { validatePassword, validateEmail } from '../../utils/regexValidation';
 import BackgroundSlideshow from 'react-background-slideshow';
 import image1 from '../../assets/images/background-1.jpeg';
@@ -106,6 +107,7 @@ class LoginView extends Component {
                                                 Already have an account? <br/>
                                                 <button type="button" onClick={this.toggleFormView}>Sign In</button>
                                             </p>
+                                            <AlertSystem />
                                         </div>
                                         <Form className="form-content" onSubmit={this.handleSignUp}>
                                             <FormGroup>
@@ -192,9 +194,9 @@ class LoginView extends Component {
                                             </FormGroup>
                                             <div className="form-footer">
                                                 <FormGroup>
-                                                    { 
+                                                    {
                                                         isLoading ? 
-                                                        (<Loader color="primary" />) : 
+                                                        (<span><Loader color="primary" /> <span>Please wait. Registering...</span></span>) :
                                                         (<Button color="primary" type="submit">Sign Up</Button>)
                                                     }
                                                 </FormGroup> 
@@ -210,6 +212,7 @@ class LoginView extends Component {
                                                 Sign in with your credentials or <br/>
                                                 <button onClick={this.toggleFormView}>create a new account</button>
                                             </p>
+                                            <AlertSystem />
                                         </div>
                                         <Form className="form-content" onSubmit={this.handleSignIn}>
                                             <FormGroup>
@@ -237,9 +240,9 @@ class LoginView extends Component {
                                             </FormGroup>
                                             <div className="form-footer">
                                                 <FormGroup>
-                                                    { 
+                                                {
                                                         isLoading ? 
-                                                        (<Loader color="primary" />) : 
+                                                        (<span><Loader color="primary" /> <span style={{fontWeight: 'bold'}}>Logging in... please wait</span></span>) :
                                                         (<Button color="primary" type="submit">Login</Button>)
                                                     }
                                                 </FormGroup>
