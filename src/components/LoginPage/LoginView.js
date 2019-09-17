@@ -98,6 +98,7 @@ class LoginView extends Component {
                     <Container className="main-body" fluid>
                         <Row className="first-row">
                             <Col xs="12" sm="12" md="4" lg="3" className="form-box">
+                                <div className="overflow">
                                 {this.state.showReg ? 
                                 (
                                     <div>
@@ -251,6 +252,7 @@ class LoginView extends Component {
                                     </div>
                                 )
                                 }
+                                </div>
                             </Col>
                             <Col xs="12" sm="12" md="4" lg="4"></Col>
                             <Col xs="12" sm="12" md="4" lg="4"></Col>
