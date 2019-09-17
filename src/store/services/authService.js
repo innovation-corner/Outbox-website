@@ -1,4 +1,4 @@
-import { getFunc, postFunc, singlePostFunc } from "./httpService";
+import { postFunc, singlePostFunc } from "./httpService";
 
 export const loginService = payload => {
     return postFunc('auth/login', payload);
