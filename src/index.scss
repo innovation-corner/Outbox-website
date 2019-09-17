@@ -19,7 +19,7 @@ body {
 }
 
 .main-body {
-  margin-top: 80px;
+  margin-top: 100px;
   
 
   .first-row {
@@ -31,6 +31,11 @@ body {
     background: #fff;
     box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.39);
     padding: 0px;
+
+    .overflow {
+      overflow-y: scroll;
+      height: auto;
+    }
 
     .form-header {
       padding: 20px;
