@@ -1,20 +1,23 @@
-import React, { Component, Fragment } from 'react';
-import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
+import React, { Component } from 'react';
+import { TabContent, TabPane, Nav, NavItem, NavLink, Badge, Button, Row, Col, Table } from 'reactstrap';
 import classnames from 'classnames';
 import { LayoutView } from '../Layout/LayoutView';
 import { ContentContainer } from '../../Reuse/ContentContainer';
+import { 
+    IoIosAdd
+} from 'react-icons/io';
+import User from '../../../assets/images/user-1.png';
 import './styles.scss';
 
 class UsersView extends Component {
     constructor(props) {
         super(props);
-        this.toggle = this.toggle.bind(this);
         this.state = {
             activeTab: '1'
         };
     };
     
-    toggle(tab) {
+    toggle = (tab) => {
         if (this.state.activeTab !== tab) {
             this.setState({
                 activeTab: tab
@@ -28,39 +31,65 @@ class UsersView extends Component {
                 <div className="top-breadcrumb">
                     <Row>
                         <Col sm="2">
-                            <h2>Users</h2>
+                            <h2 className="title">Users</h2>
                         </Col>
                         <Col sm="4">
-                            <Nav tabs>
+                            <Nav className="top-tab" tabs>
                                 <NavItem>
                                     <NavLink
-                                        className={classnames({ active: this.state.activeTab === '1' })}
+                                        className={classnames('tab-item', this.state.activeTab === '1' ? 'active-link' : '')}
                                         onClick={() => { this.toggle('1'); }}>
-                                        All
+                                        All {" "}
+                                        <Badge color="primary" pill>121</Badge>
                                     </NavLink>
                                 </NavItem>
                                 <NavItem>
                                     <NavLink 
-                                        className={classnames({ active: this.state.activeTab === '2' })} 
+                                        className={classnames('tab-item', this.state.activeTab === '2' ? 'active-link' : '')} 
                                         onClick={() => { this.toggle('2'); }}>
-                                        Admins
+                                        Admins {" "}
+                                        <Badge color="primary" pill>45</Badge>
                                     </NavLink>
                                 </NavItem>
                             </Nav>
                         </Col>
                         <Col sm="6" className="">
-                            <Button color="primary" className="pull-right" size="lg">
-                                Add Users
+                            <Button className="pull-right add-btn" size="lg">
+                                Add Users {" "}<IoIosAdd />
                             </Button>
                         </Col>
                     </Row>
                 </div>
-                <ContentContainer>
+                <ContentContainer className="content-body">
                     <TabContent activeTab={this.state.activeTab}>
                         <TabPane tabId="1">
                             <Row>
                                 <Col sm="12">
-                                    <h4>Tab 1 Contents</h4>
+                                <Table hover>
+                                    <thead className="table-head">
+                                        <tr>
+                                            <th></th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Role</th>
+                                            <th>Location</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody >
+                                        <tr>
+                                            <th scope="row"></th>
+                                            <td>
+                                                <img className="" alt="profile-pic" src={User}/>
+                                                <span>Mark</span>
+                                            </td>
+                                            <td>Otto</td>
+                                            <td>@mdo</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </Table>
                                 </Col>
                             </Row>
                         </TabPane>
