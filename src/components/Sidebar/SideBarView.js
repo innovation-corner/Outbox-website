@@ -49,7 +49,7 @@ export const SideBarView = ({}) => {
                                 </Link>
                             </li>
                             <li className="kt-menu__item kt-menu__item--submenu kt-menu__item--submenu-fullheight kt-menu__item--open kt-menu__item--here">
-                                <Link to="javascript:;" className="kt-menu__link">
+                                <Link to="/users" className="kt-menu__link">
                                     <IoIosContacts className="kt-menu__link-icon" />
                                 </Link>
                             </li>

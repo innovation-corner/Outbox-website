@@ -2,15 +2,6 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { style } from 'typestyle';
 
-const styles = style({
-    subHeader: {
-        
-    },
-    h2: {
-
-    }
-});
-
 export const Breadcrumps = ({ title }) => {
     return (
         <Fragment>

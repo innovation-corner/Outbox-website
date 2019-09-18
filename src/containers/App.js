@@ -7,6 +7,7 @@ import PrivateRoute from './privateRoute';
 import LoginPage from '../containers/Login';
 import ConfirmationView from '../components/Confirmation/ConfirmationView';
 import DashboardView from '../components/Account/Dashboard/DashboardView';
+import UsersView from '../components/Account/Users/UsersView';
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
           <Route exact path='/' component={LoginPage} />
           <Route exact path='/email-confirmation/:token' component={ConfirmationView} />
           <PrivateRoute path='/dashboard' component={DashboardView} />
+          <PrivateRoute path='/users' component={UsersView} />
           <Redirect from='*' to='/'/>
         </Switch>
       </ConnectedRouter>
