@@ -3,6 +3,7 @@ import { TabContent, TabPane, Nav, NavItem, NavLink, Badge, Button, Row, Col, Ta
 import classnames from 'classnames';
 import LayoutView from '../Layout/LayoutView';
 import { ContentContainer } from '../../Reuse/ContentContainer';
+import AddUserModal from '../../modals/AddUserModal/AddUserModal';
 import { 
     IoIosAdd
 } from 'react-icons/io';
@@ -13,7 +14,8 @@ class UsersView extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            activeTab: '1'
+            activeTab: '1',
+            modal: false
         };
     };
 
@@ -31,6 +33,12 @@ class UsersView extends Component {
                 activeTab: tab
             });
         };
+    };
+
+    toggleModal = () => {
+        this.setState(prevState => ({
+            modal: !prevState.modal
+        }));
     };
 
     render() {
@@ -62,11 +70,12 @@ class UsersView extends Component {
                             </Nav>
                         </Col>
                         <Col sm="6" className="">
-                            <Button className="pull-right add-btn" size="lg">
+                            <Button className="pull-right add-btn" size="lg" onClick={this.toggleModal}>
                                 Add Users {" "}<IoIosAdd />
                             </Button>
                         </Col>
                     </Row>
+                    <AddUserModal modal={this.state.modal} toggle={this.toggleModal} />
                 </div>
                 <ContentContainer className="content-body">
                     <TabContent activeTab={this.state.activeTab}>
