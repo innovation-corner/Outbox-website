@@ -1,5 +1,4 @@
 import React, { Fragment, Component } from 'react';
-import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { 
@@ -10,6 +9,7 @@ import {
     IoIosCopy,
     IoIosContacts
 } from 'react-icons/io';
+import NavBarItem from '../../Reuse/NavBarItem';
 
 class SideBarView extends Component {
     render() {
@@ -31,31 +31,36 @@ class SideBarView extends Component {
                     <div className="kt-aside-menu-wrapper kt-grid__item kt-grid__item--fluid" id="kt_aside_menu_wrapper">
                         <div id="kt_aside_menu" className="kt-aside-menu kt-aside-menu--dropdown">		
                             <ul className="kt-menu__nav">
-                                <li className={classnames(menu.home === true ? 'active' : '', "kt-menu__item kt-menu__item--submenu kt-menu__item--submenu-fullheight kt-menu__item--open kt-menu__item--here")}>
-                                    <Link to="/home/dashboard" className="kt-menu__link">
-                                        <IoIosHome className={classnames(menu.home === true ? 'active' : '', "kt-menu__link-icon")} />
-                                    </Link>
-                                </li>
-                                <li style={{fontSize: '15px'}} className="kt-menu__item kt-menu__item--submenu kt-menu__item--submenu-fullheight kt-menu__item--open kt-menu__item--here">
-                                    <Link to="/" className="kt-menu__link">
-                                        <IoIosStats className="kt-menu__link-icon" />
-                                    </Link>
-                                </li>
-                                <li className="kt-menu__item kt-menu__item--submenu kt-menu__item--submenu-fullheight kt-menu__item--open kt-menu__item--here">
-                                    <Link to="/" className="kt-menu__link">
-                                        <IoIosPin className="kt-menu__link-icon" />
-                                    </Link>
-                                </li>
-                                <li className="kt-menu__item kt-menu__item--submenu kt-menu__item--submenu-fullheight kt-menu__item--open kt-menu__item--here">
-                                    <Link to="/" className="kt-menu__link" >
-                                        <IoIosCopy className="kt-menu__link-icon"/>
-                                    </Link>
-                                </li>
-                                <li className={classnames(menu.users === true ? 'active' : '', "kt-menu__item kt-menu__item--submenu kt-menu__item--submenu-fullheight kt-menu__item--open kt-menu__item--here")}>
-                                    <Link to="/home/users" className="kt-menu__link">
-                                        <IoIosContacts className={classnames(menu.users === true ? 'active' : '', "kt-menu__link-icon")} />
-                                    </Link>
-                                </li>
+                                <NavBarItem 
+                                    link="/home/dashboard"
+                                    name="home"
+                                    IconName={IoIosHome}
+                                    menu={menu}
+                                />
+                                <NavBarItem 
+                                    link="/"
+                                    name=""
+                                    IconName={IoIosStats}
+                                    menu={menu}
+                                />
+                                <NavBarItem 
+                                    link="/"
+                                    name=""
+                                    IconName={IoIosPin}
+                                    menu={menu}
+                                />
+                                <NavBarItem 
+                                    link="/"
+                                    name=""
+                                    IconName={IoIosCopy}
+                                    menu={menu}
+                                />
+                                <NavBarItem 
+                                    link="/home/users"
+                                    name="users"
+                                    IconName={IoIosContacts}
+                                    menu={menu}
+                                />
                             </ul>
                         </div>
                     </div>
