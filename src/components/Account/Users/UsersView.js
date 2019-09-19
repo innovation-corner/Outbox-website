@@ -56,7 +56,7 @@ class UsersView extends Component {
                                         className={classnames('tab-item', this.state.activeTab === '1' ? 'active-link' : '')}
                                         onClick={() => { this.toggle('1'); }}>
                                         All {" "}
-                                        <Badge color="primary" pill>121</Badge>
+                                        <Badge color="primary" pill>0</Badge>
                                     </NavLink>
                                 </NavItem>
                                 <NavItem>
@@ -64,7 +64,7 @@ class UsersView extends Component {
                                         className={classnames('tab-item', this.state.activeTab === '2' ? 'active-link' : '')} 
                                         onClick={() => { this.toggle('2'); }}>
                                         Admins {" "}
-                                        <Badge color="primary" pill>45</Badge>
+                                        <Badge color="primary" pill>0</Badge>
                                     </NavLink>
                                 </NavItem>
                             </Nav>
@@ -82,35 +82,42 @@ class UsersView extends Component {
                         <TabPane tabId="1">
                             <Row>
                                 <Col sm="12">
-                                <Table hover>
-                                    <thead className="table-head">
-                                        <tr>
-                                            <th></th>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Role</th>
-                                            <th>Location</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody >
-                                        <tr>
-                                            <th scope="row"></th>
-                                            <td>
-                                                <img className="" alt="profile-pic" src={User}/>
-                                                <span>Mark</span>
-                                            </td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    </tbody>
-                                </Table>
+                                    <p style={{textAlign: 'center'}}>No users found</p>
+                                    {/* <Table hover>
+                                        <thead className="table-head">
+                                            <tr>
+                                                <th></th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Role</th>
+                                                <th>Location</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody >
+                                            <tr>
+                                                <th scope="row"></th>
+                                                <td>
+                                                    <img className="" alt="profile-pic" src={User}/>
+                                                    <span>Mark</span>
+                                                </td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </Table> */}
                                 </Col>
                             </Row>
                         </TabPane>
-                        <TabPane tabId="2"></TabPane>
+                        <TabPane tabId="2">
+                            <Row>
+                                <Col sm="12">
+                                    <p style={{textAlign: 'center'}}>No users found</p>
+                                </Col>
+                            </Row>
+                        </TabPane>
                     </TabContent>
                 </ContentContainer>
             </LayoutView>

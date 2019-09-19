@@ -19,17 +19,21 @@ class AddUserModal extends React.Component {
     this.state = {
       firstName: '',
       email: '',
+      location: '',
       gender: '',
-      locationId: '',
       role: ''
-    }
+    };
   };
 
   handleInputChange = ({ target: { value, name } }) => {
-    validatePassword("passwordErr", value, this);
+    // validatePassword("passwordErr", value, this);
     this.setState({
         [name]: value
     });
+  };
+  
+  onAddUser = e => {
+    e.preventDefault();
   };
 
   render() {
@@ -40,7 +44,7 @@ class AddUserModal extends React.Component {
             <h3>Add New User</h3>
           </ModalHeader>
           <ModalBody style={styles.modalBody}>
-              <Form>
+              <Form onSubmit={this.onAddUser}>
                 <FormGroup>
                   <InputField 
                     fieldName="firstName" 
@@ -74,34 +78,50 @@ class AddUserModal extends React.Component {
                   )}  */}
                 </FormGroup>
                 <FormGroup>
-                  <select style={styles.inputField} className="form-control" name="role" onChangeField={this.handleInputChange}>
+                  <select 
+                    value={this.state.role}
+                    style={styles.inputField} 
+                    className="form-control" name="role" 
+                    onChangeField={this.handleInputChange}>
                     <option value="">Role</option>
                   </select>
                 </FormGroup>
                 <FormGroup>
-                  <label>Gender</label>
+                  <label style={{fontSize: '16px'}}>Gender</label>
                   <FormGroup check>
                     <div className="row">
-                      <div className="col-md-2">
-                        <Label check>
-                          <Input type="radio" id="checkbox2" />{' '}Male
-                        </Label>
+                      <div className="col-md-3">
+                        <Input 
+                          type="radio"
+                          name="gender"
+                          value="male"
+                          onChange={this.onChangeField}
+                          style={styles.radio} /> {'  '}
+                        <span style={styles.ratioContainer}>Male</span>
                       </div>
                       <div className="col-md-3">
-                        <Label check>
-                          <Input type="radio" id="checkbox2" />{' '}Male
-                        </Label>
+                        <Input 
+                          type="radio" 
+                          name="gender"
+                          value="female"
+                          onChange={this.onChangeField}
+                          style={styles.radio} /> {'  '} 
+                        <span style={styles.ratioContainer}>Female</span>
                       </div>
                     </div>
                   </FormGroup>
                 </FormGroup>
                 <FormGroup>
-                  <select style={styles.inputField} className="form-control" name="role" onChangeField={this.handleInputChange}>
+                  <select 
+                    value={this.state.location}
+                    style={styles.inputField} 
+                    className="form-control" name="role" 
+                    onChangeField={this.handleInputChange}>
                     <option value="">Location</option>
                   </select>
                 </FormGroup>
               </Form>
-              <Button color="primary" className="pull-right">Add User</Button>{' '}
+              <Button type="submit" color="primary" style={styles.addButton} className="pull-right" disabled>Add User</Button>{' '}
           </ModalBody>
         </Modal>
       </Fragment>
