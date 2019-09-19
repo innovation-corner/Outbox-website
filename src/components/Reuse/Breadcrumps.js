@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { style } from 'typestyle';
 
 export const Breadcrumps = ({ title }) => {
     return (

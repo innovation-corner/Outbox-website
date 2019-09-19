@@ -4,7 +4,6 @@ import logger from "redux-logger";
 import thunk from 'redux-thunk';
 import { routerMiddleware } from 'connected-react-router';
 import { rootReducer } from './reducers/index';
-import throttle from 'lodash/throttle';
 import { loadState, saveState } from './services/localStorageHelper'; 
 
 export const history = createBrowserHistory();
@@ -22,10 +21,10 @@ export default function configureStore() {
             ),
         ),
     );
-
-    store.subscribe(throttle(() => { 
+    
+    store.subscribe(() => {
         saveState(store.getState()); 
-    }, 1000)); 
-  
+    });
+    
     return store
 };

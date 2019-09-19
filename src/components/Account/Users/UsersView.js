@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { TabContent, TabPane, Nav, NavItem, NavLink, Badge, Button, Row, Col, Table } from 'reactstrap';
 import classnames from 'classnames';
-import { LayoutView } from '../Layout/LayoutView';
+import LayoutView from '../Layout/LayoutView';
 import { ContentContainer } from '../../Reuse/ContentContainer';
 import { 
     IoIosAdd
@@ -15,6 +15,14 @@ class UsersView extends Component {
         this.state = {
             activeTab: '1'
         };
+    };
+
+    componentDidMount() {
+        const { toggleMenu } = this.props;
+        toggleMenu({
+            key: 'users',
+            value: true
+        });
     };
     
     toggle = (tab) => {

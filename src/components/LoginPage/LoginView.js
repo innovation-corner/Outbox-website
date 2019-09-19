@@ -5,7 +5,6 @@ import {
     Col,
     Form,
     FormGroup,
-    Input,
     Button
 } from 'reactstrap';
 import TopNavBar from '../NavBar/index';
