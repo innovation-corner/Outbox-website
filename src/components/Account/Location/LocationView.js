@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import LayoutView from '../Layout/LayoutView';
 import { ContentContainer } from '../../Reuse/ContentContainer';
 import AddLocationModal from '../../modals/AddLocationModal/AddLocationModal';
+import LocationCard from '../../Reuse/LocationCard';
 import { 
     IoIosAdd
 } from 'react-icons/io';
@@ -49,7 +50,9 @@ class LocationView extends Component {
                     </Row>
                 </div>
                 <ContentContainer>
-
+                    <Row>
+                        <LocationCard />
+                    </Row>
                 </ContentContainer>
             </LayoutView>
         );
