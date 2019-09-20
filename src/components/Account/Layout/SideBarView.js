@@ -44,8 +44,8 @@ class SideBarView extends Component {
                                     menu={menu}
                                 />
                                 <NavBarItem 
-                                    link="/"
-                                    name=""
+                                    link="/home/location"
+                                    name="location"
                                     IconName={IoIosPin}
                                     menu={menu}
                                 />
