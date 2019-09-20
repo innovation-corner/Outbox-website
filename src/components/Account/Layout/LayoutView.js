@@ -1,15 +1,15 @@
 import React, { Fragment, Component } from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import TopBarView from '../../TopBar/TopBarView';
-import { SideBarView } from '../../Sidebar/SideBarView';
+import { connect } from 'react-redux';
+import { logout } from '../../../store/actions/authActions';
+import TopBarView from './TopBarView';
+import SideBarView from './SideBarView';
 import '../../../assets/css/generic.css';
 import '../../../assets/css/style.bundle.css';
-import { styles } from './styles';
 
-export class LayoutView extends Component {
+class LayoutView extends Component {
     render() {
-        const { children } = this.props;
+        const { children, userData, logout, menuItem } = this.props;
 
         return (
             <Fragment>
@@ -28,10 +28,10 @@ export class LayoutView extends Component {
                     </div>
                     <div className="kt-grid kt-grid--hor kt-grid--root">
                         <div className='kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver kt-page'>
-                            <SideBarView />
+                            <SideBarView menu={menuItem} />
                         </div>
                         <div className="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-wrapper" id="kt_wrapper">
-                            <TopBarView />
+                            <TopBarView userData={userData} logout={() => logout()}/>
 
                             <div className="kt-content kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content" style={{backgroundColor: '#fff'}}>
                                 {children}
@@ -56,6 +56,13 @@ export class LayoutView extends Component {
     }
 };
 
-LayoutView.propTypes = {
+const mapStateToProps = state => ({
+    menuItem: state.alert.activeMenu,
+    userData: state.auth.userData,
+});
 
-};
+const mapDispatchToProps = dispatch => ({
+    logout: () => dispatch(logout())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LayoutView);

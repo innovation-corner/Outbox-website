@@ -3,7 +3,12 @@ import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { 
-    IoIosPerson, IoIosHome, IoIosFunnel, IoIosShuffle, IoIosTv, IoIosCall, IoIosPrint
+    IoIosPerson, 
+    IoIosFunnel, 
+    IoIosShuffle, 
+    IoIosTv, 
+    IoIosCall, 
+    IoIosPrint
 } from 'react-icons/io';
 
 const styles = {

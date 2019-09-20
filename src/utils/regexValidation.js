@@ -1,5 +1,3 @@
-import React, { Fragment } from "react"; 
-// testing that input is + or digits 
 export const areDigits = input => { 
     const re_digits = /^[+]?[0-9]*$/; 
     return re_digits.test(input); 

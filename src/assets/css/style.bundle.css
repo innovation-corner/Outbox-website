@@ -43094,7 +43094,8 @@ body {
         text-decoration: none;
         position: relative;
         vertical-align: middle;
-        align-items: stretch;
+        /* align-items: stretch; */
+        font-size: 10px;
         outline: 0!important;
         text-decoration: none;
         cursor: pointer
@@ -45419,7 +45420,7 @@ body {
     }
     .kt-aside .kt-aside-menu .kt-menu__nav>.kt-menu__item {
         width: 100%;
-        height: 54px;
+        height: 40px;
         align-items: stretch;
         justify-content: center;
         align-content: center
@@ -45431,12 +45432,12 @@ body {
     }
     .kt-aside .kt-aside-menu .kt-menu__nav>.kt-menu__item>.kt-menu__link>.kt-menu__link-icon {
         display: flex;
-        height: 42px!important;
-        width: 42px!important;
-        flex: 0 0 42px!important;
+        height: 30px!important;
+        width: 30px!important;
+        flex: 0 0 30px!important;
         align-items: center;
         justify-content: center;
-        font-size: 1.6rem
+        font-size: 15px
     }
     .kt-aside .kt-aside-menu .kt-menu__nav>.kt-menu__item>.kt-menu__link>.kt-menu__link-badge {
         position: absolute!important;

@@ -10,5 +10,5 @@ export const ContentContainer = ({ children }) => {
 };
 
 ContentContainer.propTypes = {
-    // children: PropTypes.string.isRequired
+    children: PropTypes.any.isRequired
 };

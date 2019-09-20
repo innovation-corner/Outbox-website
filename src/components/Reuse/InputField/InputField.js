@@ -12,7 +12,8 @@ const InputField = ({
     error, 
     onInputChange, 
     placeholder, 
-    show 
+    show,
+    styles
 }) => { 
     if (fieldType === "password") { 
         return ( 
@@ -25,7 +26,8 @@ const InputField = ({
                     name={fieldName} 
                     value={fieldValue} 
                     onChange={onChangeField} 
-                    placeholder={placeholder} 
+                    placeholder={placeholder}
+                    style={styles}
                 /> 
  
                 <span className="toggle-password-icon" onClick={onShowPassword}> 
@@ -44,7 +46,8 @@ const InputField = ({
                     placeholder={placeholder} 
                     name={fieldName} 
                     value={fieldValue} 
-                    onChange={onChangeField} 
+                    onChange={onChangeField}
+                    style={styles}
                 /> 
                 {show ? ( 
                     <span 
