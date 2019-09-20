@@ -1,8 +1,6 @@
 import React, { Fragment, Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { logout } from '../../store/actions/authActions';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import {
     Nav,
     UncontrolledDropdown,
@@ -15,9 +13,8 @@ import {
     IoIosSearch,
     IoIosArrowDown
 } from 'react-icons/io';
-import Logo from '../../assets/images/logo-1.png';
-import User from '../../assets/images/user.png';
-import { styles } from './styles';
+import Logo from '../../../assets/images/logo-1.png';
+import User from '../../../assets/images/user.png';
 
 class TopBarView extends Component {
     render() {
@@ -38,7 +35,7 @@ class TopBarView extends Component {
                                         </span>
                                     </Link>
                                 </li>
-                                <li classNmae="kt-menu__item">
+                                <li className="kt-menu__item">
                                     <div className="kt-quick-search" id="kt_quick_search_default">
                                         <form className="kt-quick-search__form" style={{backgroundColor: 'unset', fontSize: '15px'}}>
                                             <div className="input-group" >
@@ -106,16 +103,9 @@ class TopBarView extends Component {
 };
 
 TopBarView.propTypes = {
-
+    userData: PropTypes.object.isRequired,
+    logout: PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => ({
-    userData: state.auth.userData
-});
-
-const mapStateToDispatch = dispatch => ({
-    logout: () => dispatch(logout())
-});
-
-export default connect(mapStateToProps, mapStateToDispatch)(TopBarView);
+export default TopBarView;
 

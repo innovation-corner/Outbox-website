@@ -1,6 +1,6 @@
-import React, { Component, Fragment } from 'react';
-import className from 'classnames';
-import { LayoutView } from '../Layout/LayoutView';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import LayoutView from '../Layout/LayoutView';
 import {  Breadcrumps } from '../../Reuse/Breadcrumps';
 import { ContentContainer } from '../../Reuse/ContentContainer';
 import { RoomCard } from '../../Reuse/RoomCard';
@@ -8,6 +8,14 @@ import Room1 from '../../../assets/images/room-1.png';
 import Room2 from '../../../assets/images/room-2.png';
 
 class DashboardView extends Component {
+    componentDidMount() {
+        const { toggleMenu } = this.props;
+        toggleMenu({
+            key: 'home',
+            value: true
+        });
+    };
+
     render() {
         return (
             <LayoutView>
@@ -30,6 +38,10 @@ class DashboardView extends Component {
             </LayoutView>
         );
     };
+};
+
+DashboardView.propTypes = {
+    toggleMenu: PropTypes.func.isRequired
 };
 
 export default DashboardView;

@@ -1,0 +1,54 @@
+.top-breadcrumb {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 30px;
+
+    .title {
+        font-weight: '600';
+        font-size: 30px;
+        color: #191B3F;
+    }
+
+    .top-tab {
+        border: 0;
+
+        .tab-item {
+            width: 130px;
+            font-size: 18px;
+            padding: 20px 10px 30px 10px;
+            border: 0;
+            text-align: center;
+            color: #191B3F;
+        }
+
+        .active-link {
+            color: #191B3F;
+            border-bottom: 3px solid #7540EE;
+        }
+
+        .tab-item:hover {
+            cursor: pointer;
+            border-bottom: 3px solid #7540EE;
+        }
+    }
+
+    .add-btn {
+        background-color: #7540EE;
+        color: #fff;
+        padding: 10px;
+        width: 170px;
+    }
+
+    .add-btn:hover {
+        background-color: #7540EE;
+    }
+}
+
+.content-body {
+    td {
+        padding: 20px;
+    }
+
+    .table-body {
+        padding: 20px;
+    }
+}

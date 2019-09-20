@@ -1,7 +1,8 @@
 import { 
     START_LOADING, 
     STOP_LOADING, 
-    UPDATE_ALERT
+    UPDATE_ALERT,
+    ACTIVE_MENU
 } from '../actionTypes';
 
 export const startLoading = () => ({ 
@@ -14,5 +15,10 @@ export const stopLoading = () => ({
 
 export const triggerAlert = (payload) => ({
     type: UPDATE_ALERT,
+    payload
+});
+
+export const switchActiveMenu = (payload) => ({
+    type: ACTIVE_MENU,
     payload
 });

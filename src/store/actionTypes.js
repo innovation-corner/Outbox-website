@@ -12,3 +12,4 @@ export const RESET = 'RESET';
 
 export const VERIFY_USER = 'VERIFY_USER';
 export const UPDATE_ALERT = 'UPDATE_ALERT';
+export const ACTIVE_MENU = 'ACTIVE_MENU';
