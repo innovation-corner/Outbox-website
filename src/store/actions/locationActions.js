@@ -1,0 +1,39 @@
+import {
+    GET_ALL_LOCATION,
+    ADD_NEW_LOCATION,
+    ADD_LOCATION_FAILURE,
+    ADD_LOCATION_SUCCESS
+  } from '../actionTypes';
+  import { push } from 'connected-react-router';
+  import { getAllLocation, addNewLocation, getLocationRooms, getLocationUsers } from '../services/locationService';
+  import { startLoading, stopLoading, triggerAlert } from '../actions/index';
+
+  export const addNew = payload => {
+    return (dispatch, getState) => {
+      dispatch(startLoading())
+      addNewLocation(payload)
+      .then(response => {
+        if (response.success) { 
+          dispatch(stopLoading());
+          dispatch(triggerAlert({
+            message: response.message,
+            showType: 'success',
+            isActive: true
+          }));  
+          dispatch({type: ADD_LOCATION_SUCCESS, payload: response.location});
+        } else { 
+          dispatch(triggerAlert({
+            message: response.message,
+            showType: 'danger',
+            isActive: true
+          }));
+          dispatch(stopLoading()); 
+          dispatch({ type: ADD_LOCATION_FAILURE }); 
+        }
+      })
+      .catch(error => {
+        dispatch(stopLoading()); 
+        dispatch({ type: ADD_LOCATION_FAILURE });
+      });
+    }
+  };

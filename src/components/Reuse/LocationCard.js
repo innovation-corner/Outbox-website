@@ -80,18 +80,16 @@ const styles = {
 class LocationCard extends React.Component {
     constructor(props) {
         super(props);
-    
-        this.toggle = this.toggle.bind(this);
         this.state = {
-          dropdownOpen: false
+            dropdownOpen: false
         };
-      }
+    };
     
-      toggle() {
+    toggle = () => {
         this.setState(prevState => ({
-          dropdownOpen: !prevState.dropdownOpen
+            dropdownOpen: !prevState.dropdownOpen
         }));
-      }
+    };
       
     render() {
         return (
