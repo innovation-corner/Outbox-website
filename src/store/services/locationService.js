@@ -1,11 +1,11 @@
 import { postFunc, singlePostFunc, putFunc, getFunc } from "./httpService";
 
-export const getAllLocation = payload => {
-    return postFunc('auth/login', payload);
+export const getAllLocation = business_id => {
+    return getFunc(`business/${business_id}/locations`);
 };
 
 export const addNewLocation = payload => {
-    return postFunc('location/new', payload);
+    return postFunc('location/new', payload, true);
 };
 
 export const updateLocation = id => {

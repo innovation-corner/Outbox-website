@@ -44,12 +44,14 @@ const delFunc = (path) => {
     });
 };
 
-const postFunc = (path, payload) => {
+const postFunc = (path, payload, check=false) => {
+    const token = `Bearer ${localStorage.getItem("token")}`; 
     return new Promise((resolve, reject) => {
         fetch(`${baseURL}${path}`, { 
             method: "POST", 
             headers: { 
                 "Content-Type": "application/json", 
+                Authorization: check === true ? token : ''
             }, 
             body: JSON.stringify(payload) 
         }) 

@@ -1,5 +1,5 @@
 import { 
-    UPDATE_ALERT, ACTIVE_MENU
+    UPDATE_ALERT, ACTIVE_MENU, RESET
 } from '../actionTypes';
 
 const alertState = {
@@ -28,6 +28,12 @@ export const alertReducer = (state = alertState, action) => {
                     [payload.key]: payload.value
                 }
             }
+        case RESET:
+            return {
+                ...state,
+                message: '',
+                isActive: false
+            };
         default: 
             return state; 
     } 
