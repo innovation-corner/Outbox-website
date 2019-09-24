@@ -11,9 +11,9 @@ import {
   export const addNew = payload => {
     return (dispatch, getState) => {
       dispatch(startLoading())
-      addNewLocation(payload)
+      return addNewLocation(payload)
       .then(response => {
-        if (response.success) { 
+        if (response.success) {
           dispatch(stopLoading());
           dispatch(triggerAlert({
             message: response.message,

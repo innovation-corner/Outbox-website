@@ -22,7 +22,7 @@ class LocationView extends Component {
     };
 
     componentDidMount() {
-        const { toggleMenu, getLocations } = this.props;
+        const { toggleMenu, getLocations, reset } = this.props;
         getLocations().then(payload => {
             this.setState({
                 payloadLoading: false
@@ -33,6 +33,7 @@ class LocationView extends Component {
             key: 'location',
             value: true
         });
+        reset();
     };
     
     toggleModal = () => {
@@ -50,7 +51,6 @@ class LocationView extends Component {
                     toggle={this.toggleModal} 
                     createNew={(payload) => addNew(payload)}
                     isLoading={isLoading}
-                    reset={() => reset()}
                     businessId={businessId}
                 />
 
@@ -74,13 +74,13 @@ class LocationView extends Component {
                             <Row>
                                 {
                                     locations && 
-                                    locations.map(location=> (
+                                    locations.map(location => (
                                         <LocationCard 
                                             key={location.id}
-                                            name={location}
-                                            address={location}
-                                            user={location}
-                                            rooms={location}
+                                            name={location.name}
+                                            address={location.address}
+                                            user=""
+                                            rooms=""
                                         />
                                     ))
                                 }

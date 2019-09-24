@@ -17,7 +17,7 @@ export const locationReducer = (state = locationState, action) => {
         case GET_ALL_LOCATION: 
             return { 
                 ...state, 
-                locations: state.locations.concat(payload)
+                locations: payload
             }; 
         case ADD_LOCATION_SUCCESS:
             return {
