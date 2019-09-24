@@ -9,22 +9,31 @@ import {
     IoIosAdd
 } from 'react-icons/io';
 import './styles.scss';
+import { Loader } from '../../Reuse/Loader';
 
 class LocationView extends Component {
     constructor(props) {
         super(props);
         this.state = {
             activeTab: '1',
-            modal: false
+            modal: false,
+            payloadLoading: true
         };
     };
 
     componentDidMount() {
-        const { toggleMenu } = this.props;
+        const { toggleMenu, getLocations, reset } = this.props;
+        getLocations().then(payload => {
+            this.setState({
+                payloadLoading: false
+            });
+        });
+
         toggleMenu({
             key: 'location',
             value: true
         });
+        reset();
     };
     
     toggleModal = () => {
@@ -34,9 +43,17 @@ class LocationView extends Component {
     };
 
     render() {
+        const { addNew, isLoading, reset, locations, businessId } = this.props;
         return (
             <LayoutView>
-                <AddLocationModal modal={this.state.modal} toggle={this.toggleModal} />
+                <AddLocationModal 
+                    modal={this.state.modal} 
+                    toggle={this.toggleModal} 
+                    createNew={(payload) => addNew(payload)}
+                    isLoading={isLoading}
+                    businessId={businessId}
+                />
+
                 <div className="top-breadcrumb">
                     <Row>
                         <Col sm="6">
@@ -50,9 +67,26 @@ class LocationView extends Component {
                     </Row>
                 </div>
                 <ContentContainer>
-                    <Row>
-                        <LocationCard />
-                    </Row>
+                    {
+                        this.state.payloadLoading ? 
+                        (<p style={{textAlign: 'center'}}><Loader color="blue" /></p>) :
+                        (
+                            <Row>
+                                {
+                                    locations && 
+                                    locations.map(location => (
+                                        <LocationCard 
+                                            key={location.id}
+                                            name={location.name}
+                                            address={location.address}
+                                            user=""
+                                            rooms=""
+                                        />
+                                    ))
+                                }
+                            </Row>
+                        )
+                    }
                 </ContentContainer>
             </LayoutView>
         );

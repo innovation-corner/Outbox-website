@@ -5,11 +5,11 @@ import {
   ModalHeader, 
   ModalBody, 
   FormGroup, 
-  Form,
-  Label,
-  Input,
+  Form
 } from 'reactstrap';
 import InputField from '../../Reuse/InputField/InputField';
+import { Loader } from '../../Reuse/Loader';
+import AlertSystem from '../../Reuse/AlertSystem';
 import { validatePassword, validateEmail } from '../../../utils/regexValidation';
 import { styles } from '../AddUserModal/styles'
 
@@ -19,8 +19,9 @@ class AddLocationModal extends React.Component {
     this.state = {
       locationName: '',
       email: '',
-      locationContact: '',
-      locationEmail: '',
+      locationDesc: '',
+      locationNumber: '',
+      locationAddress: '',
       admin: ''
     };
   };
@@ -33,9 +34,31 @@ class AddLocationModal extends React.Component {
   
   onAddLocation = e => {
     e.preventDefault();
+    const { createNew, businessId } = this.props;
+    const payload = {
+      businessId: businessId,
+      info: this.state.locationDesc,
+      email: this.state.email,
+      name: this.state.locationName,
+      phoneNumber: this.state.locationNumber,
+      address: this.state.locationAddress
+    };
+    createNew(payload)
+    .then(data => {
+      this.setState({
+        locationName: '',
+        email: '',
+        locationDesc: '',
+        locationNumber: '',
+        locationAddress: '',
+        admin: ''
+      });
+      window.location.reload();
+    });
   };
 
   render() {
+    const { isLoading } = this.props;
     return (
       <Fragment>
         <Modal isOpen={this.props.modal} toggle={this.props.toggle} className={this.props.className}>
@@ -43,14 +66,15 @@ class AddLocationModal extends React.Component {
             <h3>Add New Location</h3>
           </ModalHeader>
           <ModalBody style={styles.modalBody}>
-              <Form onSubmit={this.onAddLocation}>
+            <AlertSystem />
+              <Form>
                 <FormGroup>
                   <InputField 
-                    fieldName="location" 
+                    fieldName="locationName" 
                     fieldType="text" 
                     fieldValue={this.state.locationName} 
                     onChangeField={this.handleInputChange}
-                    placeholder="Location Name"
+                    placeholder="Name"
                     styles={styles.inputField}
                     // error={message} 
                   /> 
@@ -62,11 +86,11 @@ class AddLocationModal extends React.Component {
                 </FormGroup>
                 <FormGroup>
                   <InputField 
-                    fieldName="contactAddress" 
+                    fieldName="locationDesc" 
                     fieldType="text" 
-                    fieldValue={this.state.contactAddress} 
+                    fieldValue={this.state.locationDesc} 
                     onChangeField={this.handleInputChange}
-                    placeholder="Contact Address"
+                    placeholder="Description"
                     styles={styles.inputField}
                     // error={message} 
                   /> 
@@ -78,11 +102,27 @@ class AddLocationModal extends React.Component {
                 </FormGroup>
                 <FormGroup>
                   <InputField 
-                    fieldName="ContactNumber" 
+                    fieldName="locationAddress" 
                     fieldType="text" 
-                    fieldValue={this.state.contactNumber} 
+                    fieldValue={this.state.locationAddress} 
                     onChangeField={this.handleInputChange}
-                    placeholder="Contact Number"
+                    placeholder="Address"
+                    styles={styles.inputField}
+                    // error={message} 
+                  /> 
+                  {/* {message && ( 
+                    <small style={{ color: "red" }}> 
+                        {message} 
+                    </small> 
+                  )}  */}
+                </FormGroup>
+                <FormGroup>
+                  <InputField 
+                    fieldName="locationNumber" 
+                    fieldType="text" 
+                    fieldValue={this.state.locationNumber} 
+                    onChangeField={this.handleInputChange}
+                    placeholder="Phone number"
                     styles={styles.inputField}
                     // error={message} 
                   /> 
@@ -93,22 +133,24 @@ class AddLocationModal extends React.Component {
                     fieldType="email" 
                     fieldValue={this.state.email} 
                     onChangeField={this.handleInputChange}
-                    placeholder="Contact Email"
+                    placeholder="Email address"
                     styles={styles.inputField}
                     // error={message} 
                   /> 
                 </FormGroup>
-                <FormGroup>
-                  <select 
-                    value={this.state.admin}
-                    style={styles.inputField} 
-                    className="form-control" name="role" 
-                    onChangeField={this.handleInputChange}>
-                    <option value="">Add Admin</option>
-                  </select>
-                </FormGroup>
               </Form>
-              <Button type="submit" color="primary" style={styles.addButton} className="pull-right" disabled>Add Location</Button>{' '}
+              <Button 
+                type="button" 
+                color="primary" 
+                style={styles.addButton} 
+                className="pull-right"
+                onClick={this.onAddLocation} 
+                >
+                  {isLoading ? 
+                    (<span><Loader color="white"/> {' '} Adding...</span>) :
+                    ("Add Location")
+                  }
+                </Button>
           </ModalBody>
         </Modal>
       </Fragment>

@@ -11,11 +11,9 @@ import { registerService, loginService, verifyEmail } from '../services/authServ
 import { startLoading, stopLoading, triggerAlert } from '../actions/index';
 import { setCookie } from '../../utils/cookies';
 
-export const reset = () => {
-  return {
-    type: RESET
-  };
-};
+export const reset = () => ({
+  type: RESET
+});
 
 export const register = payload => {
   return (dispatch, getState) => {

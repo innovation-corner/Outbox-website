@@ -4,7 +4,6 @@ import {
     LOGOUT,
     START_LOADING,
     STOP_LOADING,
-    RESET,
     VERIFY_USER
 } from '../actionTypes';
 import { initialState } from '../initialState';
@@ -35,11 +34,6 @@ export const authReducer = (state = initialState, action) => {
             return { 
                 ...state, 
                 isLoading: false 
-            };
-        case RESET:
-            return {
-                ...state,
-                message: null
             };
         case VERIFY_USER:
             return {
