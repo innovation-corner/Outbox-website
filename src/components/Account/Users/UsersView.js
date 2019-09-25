@@ -8,6 +8,7 @@ import {
     IoIosAdd
 } from 'react-icons/io';
 import User from '../../../assets/images/user-1.png';
+import { Loader } from '../../Reuse/Loader';
 import './styles.scss';
 
 class UsersView extends Component {
@@ -15,16 +16,24 @@ class UsersView extends Component {
         super(props);
         this.state = {
             activeTab: '1',
-            modal: false
+            modal: false,
+            payloadLoading: true
         };
     };
 
     componentDidMount() {
-        const { toggleMenu } = this.props;
+        const { toggleMenu, getUsers, reset } = this.props;
         toggleMenu({
             key: 'users',
             value: true
         });
+
+        getUsers().then(response => {
+            this.setState({
+                payloadLoading: false
+            });
+        });
+        reset();
     };
     
     toggle = (tab) => {
@@ -42,6 +51,7 @@ class UsersView extends Component {
     };
 
     render() {
+        const { addNew, isLoading, businessId, users, locations } = this.props;
         return (
             <LayoutView>
                 <div className="top-breadcrumb">
@@ -75,39 +85,49 @@ class UsersView extends Component {
                             </Button>
                         </Col>
                     </Row>
-                    <AddUserModal modal={this.state.modal} toggle={this.toggleModal} />
+                    <AddUserModal 
+                        modal={this.state.modal} 
+                        toggle={this.toggleModal}
+                        createNew={(payload) => addNew(payload)}
+                        isLoading={isLoading}
+                        businessId={businessId}
+                        locations={locations}
+                    />
                 </div>
                 <ContentContainer className="content-body">
                     <TabContent activeTab={this.state.activeTab}>
                         <TabPane tabId="1">
                             <Row>
                                 <Col sm="12">
-                                    <p style={{textAlign: 'center'}}>No users found</p>
-                                    {/* <Table hover>
-                                        <thead className="table-head">
-                                            <tr>
-                                                <th></th>
-                                                <th>Name</th>
-                                                <th>Email</th>
-                                                <th>Role</th>
-                                                <th>Location</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody >
-                                            <tr>
-                                                <th scope="row"></th>
-                                                <td>
-                                                    <img className="" alt="profile-pic" src={User}/>
-                                                    <span>Mark</span>
-                                                </td>
-                                                <td>Otto</td>
-                                                <td>@mdo</td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
-                                        </tbody>
-                                    </Table> */}
+                                    { users.length === 0 ?
+                                        (<p style={{textAlign: 'center'}}>No users found</p>) :
+                                        (
+                                            this.state.payloadLoading ? 
+                                            (<p style={{textAlign: 'center'}}><Loader color="blue" /></p>) :
+                                            (
+                                                <Table hover>
+                                                    <thead className="table-head">
+                                                        <tr>
+                                                            <th></th>
+                                                            <th>Name</th>
+                                                            <th>Email</th>
+                                                            <th>Role</th>
+                                                            <th>Location</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody >
+                                                        {
+                                                            users &&
+                                                            users.map(user => {
+
+                                                            })
+                                                        }
+                                                    </tbody>
+                                                </Table>
+                                            )
+                                        )
+                                    } 
                                 </Col>
                             </Row>
                         </TabPane>

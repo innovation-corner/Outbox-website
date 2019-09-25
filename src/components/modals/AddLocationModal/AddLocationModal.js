@@ -28,7 +28,7 @@ class AddLocationModal extends React.Component {
 
   handleInputChange = ({ target: { value, name } }) => {
     this.setState({
-        [name]: value
+      [name]: value
     });
   };
   
