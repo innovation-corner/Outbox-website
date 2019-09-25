@@ -28,7 +28,7 @@ class AddLocationModal extends React.Component {
 
   handleInputChange = ({ target: { value, name } }) => {
     this.setState({
-        [name]: value
+      [name]: value
     });
   };
   
@@ -63,7 +63,7 @@ class AddLocationModal extends React.Component {
       <Fragment>
         <Modal isOpen={this.props.modal} toggle={this.props.toggle} className={this.props.className}>
           <ModalHeader style={styles.modalHeader} toggle={this.props.toggle}>
-            <h3>Add New Location</h3>
+            Add New Location
           </ModalHeader>
           <ModalBody style={styles.modalBody}>
             <AlertSystem />

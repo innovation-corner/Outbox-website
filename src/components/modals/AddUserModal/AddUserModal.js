@@ -4,13 +4,13 @@ import {
   Modal, 
   ModalHeader, 
   ModalBody, 
-  FormGroup, 
-  Form,
-  Label,
+  FormGroup,
   Input,
 } from 'reactstrap';
 import InputField from '../../Reuse/InputField/InputField';
-import { validatePassword, validateEmail } from '../../../utils/regexValidation';
+import { Loader } from '../../Reuse/Loader';
+import AlertSystem from '../../Reuse/AlertSystem';
+// import { validatePassword, validateEmail } from '../../../utils/regexValidation';
 import { styles } from './styles.js'
 
 class AddUserModal extends React.Component {
@@ -18,33 +18,56 @@ class AddUserModal extends React.Component {
     super(props);
     this.state = {
       firstName: '',
+      lastName: '',
       email: '',
-      location: '',
       gender: '',
-      role: ''
+      locationId: ''
     };
   };
 
   handleInputChange = ({ target: { value, name } }) => {
-    // validatePassword("passwordErr", value, this);
     this.setState({
-        [name]: value
+      [name]: value
     });
   };
   
-  onAddUser = e => {
+  addNewUser = e => {
     e.preventDefault();
+    const { createNew, businessId } = this.props;
+    const payload = {
+      businessId: businessId,
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      gender: this.state.gender,
+      email: this.state.email,
+      location: this.state.locationId,
+      role: 'subAdmin'
+    };
+    createNew(payload)
+    .then(data => {
+      this.setState({
+        businessId: '',
+        email: '',
+        firstName: '',
+        lastName: '',
+        locationId: '',
+        gender: ''
+      });
+      // window.location.reload();
+    });
   };
 
   render() {
+    const { isLoading, locations } = this.props;
     return (
       <Fragment>
         <Modal isOpen={this.props.modal} toggle={this.props.toggle} className={this.props.className}>
           <ModalHeader style={styles.modalHeader} toggle={this.props.toggle}>
-            <h3>Add New User</h3>
+            Add New User
           </ModalHeader>
           <ModalBody style={styles.modalBody}>
-              <Form onSubmit={this.onAddUser}>
+            <AlertSystem />
+              <form onSubmit={this.addNewUser}>
                 <FormGroup>
                   <InputField 
                     fieldName="firstName" 
@@ -53,13 +76,17 @@ class AddUserModal extends React.Component {
                     onChangeField={this.handleInputChange}
                     placeholder="First Name"
                     styles={styles.inputField}
-                    // error={message} 
                   /> 
-                  {/* {message && ( 
-                    <small style={{ color: "red" }}> 
-                        {message} 
-                    </small> 
-                  )}  */}
+                </FormGroup>
+                <FormGroup>
+                  <InputField 
+                    fieldName="lastName" 
+                    fieldType="text" 
+                    fieldValue={this.state.lastName} 
+                    onChangeField={this.handleInputChange}
+                    placeholder="Last Name"
+                    styles={styles.inputField}
+                  /> 
                 </FormGroup>
                 <FormGroup>
                   <InputField 
@@ -69,22 +96,7 @@ class AddUserModal extends React.Component {
                     onChangeField={this.handleInputChange}
                     placeholder="Email Address"
                     styles={styles.inputField}
-                    // error={message} 
                   /> 
-                  {/* {message && ( 
-                    <small style={{ color: "red" }}> 
-                        {message} 
-                    </small> 
-                  )}  */}
-                </FormGroup>
-                <FormGroup>
-                  <select 
-                    value={this.state.role}
-                    style={styles.inputField} 
-                    className="form-control" name="role" 
-                    onChangeField={this.handleInputChange}>
-                    <option value="">Role</option>
-                  </select>
                 </FormGroup>
                 <FormGroup>
                   <label style={{fontSize: '16px'}}>Gender</label>
@@ -95,7 +107,7 @@ class AddUserModal extends React.Component {
                           type="radio"
                           name="gender"
                           value="male"
-                          onChange={this.onChangeField}
+                          onChange={this.handleInputChange}
                           style={styles.radio} /> {'  '}
                         <span style={styles.ratioContainer}>Male</span>
                       </div>
@@ -104,7 +116,7 @@ class AddUserModal extends React.Component {
                           type="radio" 
                           name="gender"
                           value="female"
-                          onChange={this.onChangeField}
+                          onChange={this.handleInputChange}
                           style={styles.radio} /> {'  '} 
                         <span style={styles.ratioContainer}>Female</span>
                       </div>
@@ -113,15 +125,29 @@ class AddUserModal extends React.Component {
                 </FormGroup>
                 <FormGroup>
                   <select 
-                    value={this.state.location}
+                    value={this.state.locationId}
                     style={styles.inputField} 
-                    className="form-control" name="role" 
-                    onChangeField={this.handleInputChange}>
-                    <option value="">Location</option>
+                    className="form-control" name="locationId" 
+                    onChange={this.handleInputChange} required>
+                    <option value="">--select--</option>
+                    {locations &&
+                      locations.map(location => (
+                        <option value={location.id}>{location.name}</option>
+                      ))
+                    }
                   </select>
                 </FormGroup>
-              </Form>
-              <Button type="submit" color="primary" style={styles.addButton} className="pull-right" disabled>Add User</Button>{' '}
+                <Button 
+                  type="submit" 
+                  color="primary" 
+                  style={styles.addButton} 
+                  className="pull-right">
+                  {isLoading ? 
+                    (<span><Loader color="white"/> {' '} Adding...</span>) :
+                    ("Add User")
+                  }
+                </Button>
+              </form>
           </ModalBody>
         </Modal>
       </Fragment>
