@@ -1,6 +1,6 @@
 const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:8080/api/v1/' : "https://outbox-app.herokuapp.com/api/v1/" ;
 
-const getFunc = (path, payload) => {
+const getFunc = (path) => {
     const token = `Bearer ${localStorage.getItem("token")}`
     return new Promise((resolve, reject) => {
         fetch(`${baseURL}${path}`, { 
@@ -22,7 +22,7 @@ const getFunc = (path, payload) => {
     });
 };
 
-const delFunc = (path, payload) => {
+const delFunc = (path) => {
     const token = `Bearer ${localStorage.getItem("token")}`; 
     return new Promise((resolve, reject) => {
         fetch(`${baseURL}${path}`, { 
@@ -44,12 +44,14 @@ const delFunc = (path, payload) => {
     });
 };
 
-const postFunc = (path, payload) => {
+const postFunc = (path, payload, check=false) => {
+    const token = `Bearer ${localStorage.getItem("token")}`; 
     return new Promise((resolve, reject) => {
         fetch(`${baseURL}${path}`, { 
             method: "POST", 
             headers: { 
                 "Content-Type": "application/json", 
+                Authorization: check === true ? token : ''
             }, 
             body: JSON.stringify(payload) 
         }) 

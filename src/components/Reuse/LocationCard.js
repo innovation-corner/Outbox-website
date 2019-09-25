@@ -2,9 +2,17 @@ import React, { Fragment } from 'react';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Card, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { 
-    FaEllipsisV, FaMapMarkerAlt, FaStoreAlt
+    Card, 
+    Dropdown, 
+    DropdownToggle, 
+    DropdownMenu, 
+    DropdownItem 
+} from 'reactstrap';
+import { 
+    FaEllipsisV, 
+    FaMapMarkerAlt, 
+    FaStoreAlt
 } from 'react-icons/fa';
 import User2 from '../../assets/images/user-2.png';
 
@@ -80,20 +88,19 @@ const styles = {
 class LocationCard extends React.Component {
     constructor(props) {
         super(props);
-    
-        this.toggle = this.toggle.bind(this);
         this.state = {
-          dropdownOpen: false
+            dropdownOpen: false
         };
-      }
+    };
     
-      toggle() {
+    toggle = () => {
         this.setState(prevState => ({
-          dropdownOpen: !prevState.dropdownOpen
+            dropdownOpen: !prevState.dropdownOpen
         }));
-      }
+    };
       
     render() {
+        const { user, rooms, name, address } = this.props;
         return (
             <Fragment>
                 <div className="col-md-3">
@@ -101,7 +108,7 @@ class LocationCard extends React.Component {
                         <div style={styles.card}>
                             <Card style={{padding: '0px'}} body>
                                 <div style={styles.cardTitle}>
-                                    <span >Special Title Treatment</span>
+                                    <span>{name}</span>
                                     <Dropdown className="pull-right" group isOpen={this.state.dropdownOpen} size="lg" toggle={this.toggle}>
                                         <DropdownToggle style={{backgroundColor: 'unset', border: '0px', color: '#ccc'}}>
                                         <FaEllipsisV />
@@ -112,22 +119,21 @@ class LocationCard extends React.Component {
                                             <DropdownItem>Reschedule</DropdownItem>
                                         </DropdownMenu>
                                     </Dropdown>
-                                    
                                 </div>
                                 <div style={styles.cardBody}>
                                     <div style={styles.inner}>
                                         <p style={styles.innerIcon}><FaMapMarkerAlt />{" "}</p>
-                                        <p style={styles.cardParagraph}>Lagos 12 Ibadan Express way, Lagos Nigeria</p>
+                                        <p style={styles.cardParagraph}>{address}</p>
                                     </div>
                                     <div style={styles.inner}>
                                         <p style={styles.innerIcon}><FaStoreAlt /> {" "}</p>
-                                        <p style={styles.cardParagraph}>12 Meeting Rooms</p>
+                                        <p style={styles.cardParagraph}>{rooms} Meeting Rooms</p>
                                     </div>
                                     <div style={styles.inner}>
                                         <p style={styles.innerIcon}>
                                             <img src={User2} />
                                         </p>
-                                        <p style={styles.cardParagraph}>Jammie Lannister</p>
+                                        <p style={styles.cardParagraph}>{user}</p>
                                     </div>
                                 </div>
                             </Card>
@@ -140,8 +146,10 @@ class LocationCard extends React.Component {
 };
 
 LocationCard.propTypes = {
-    title: PropTypes.string,
-    image: PropTypes.string
+    name: PropTypes.string.isRequired,
+    address: PropTypes.string.isRequired,
+    user: PropTypes.string.isRequired,
+    rooms: PropTypes.number.isRequired
 };
 
 export default LocationCard;
