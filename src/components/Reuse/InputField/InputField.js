@@ -2,7 +2,8 @@ import React from "react";
 import PropTypes from "prop-types"; 
 import "./InputField.scss"; 
 import { eye, eyeSlash } from "react-icons-kit/fa";
-import { Icon } from "react-icons-kit"; 
+import { Icon } from "react-icons-kit";
+
 const InputField = ({ 
     fieldName, 
     fieldType, 
@@ -10,7 +11,6 @@ const InputField = ({
     onShowPassword, 
     onChangeField, 
     error, 
-    onInputChange, 
     placeholder, 
     show,
     styles
@@ -27,9 +27,8 @@ const InputField = ({
                     value={fieldValue} 
                     onChange={onChangeField} 
                     placeholder={placeholder}
-                    style={styles}
+                    style={styles}  
                 /> 
- 
                 <span className="toggle-password-icon" onClick={onShowPassword}> 
                     <Icon icon={eyeSlash} size={20} /> 
                 </span> 
@@ -66,7 +65,6 @@ InputField.propTypes = {
     fieldType: PropTypes.string, 
     fieldValue: PropTypes.string, 
     onChangeField: PropTypes.func, 
-    onInputChange: PropTypes.func, 
     onShowPassword: PropTypes.func, 
     show: PropTypes.bool, 
     placeholder: PropTypes.string 

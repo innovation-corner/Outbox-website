@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TabContent, TabPane, Nav, NavItem, NavLink, Badge, Button, Row, Col, Table } from 'reactstrap';
+import { TabContent, TabPane, Nav, NavItem, NavLink, Badge, Button, Row, Col, Table,Input } from 'reactstrap';
 import classnames from 'classnames';
 import LayoutView from '../Layout/LayoutView';
 import { ContentContainer } from '../../Reuse/ContentContainer';
@@ -66,7 +66,7 @@ class UsersView extends Component {
                                         className={classnames('tab-item', this.state.activeTab === '1' ? 'active-link' : '')}
                                         onClick={() => { this.toggle('1'); }}>
                                         All {" "}
-                                        <Badge color="primary" pill>0</Badge>
+                                        <Badge color="primary" pill>{users.length}</Badge>
                                     </NavLink>
                                 </NavItem>
                                 <NavItem>
@@ -117,12 +117,16 @@ class UsersView extends Component {
                                                         </tr>
                                                     </thead>
                                                     <tbody >
-                                                        {
-                                                            users &&
-                                                            users.map(user => {
-
-                                                            })
-                                                        }
+                                                        {users &&
+                                                        users.map(user => (
+                                                            <tr key={user.id}>
+                                                                <td><Input type="checkbox" name="gender"/></td>
+                                                                <td>{`${user.firstName} ${user.lastName}`}</td>
+                                                                <td>{user.email}</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                        ))}
                                                     </tbody>
                                                 </Table>
                                             )

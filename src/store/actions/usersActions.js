@@ -20,7 +20,7 @@ import {
             showType: 'success',
             isActive: true
           }));  
-          dispatch({type: ADD_USER_SUCCESS, payload: response.users});
+          dispatch({type: ADD_USER_SUCCESS, payload: response.user});
         } else { 
           dispatch(triggerAlert({
             message: response.message,

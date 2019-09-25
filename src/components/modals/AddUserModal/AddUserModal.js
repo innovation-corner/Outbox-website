@@ -9,6 +9,7 @@ import {
 } from 'reactstrap';
 import InputField from '../../Reuse/InputField/InputField';
 import { Loader } from '../../Reuse/Loader';
+import AlertSystem from '../../Reuse/AlertSystem';
 // import { validatePassword, validateEmail } from '../../../utils/regexValidation';
 import { styles } from './styles.js'
 
@@ -17,11 +18,10 @@ class AddUserModal extends React.Component {
     super(props);
     this.state = {
       firstName: '',
+      lastName: '',
       email: '',
-      location: '',
       gender: '',
-      role: '',
-      locationId: null
+      locationId: ''
     };
   };
 
@@ -40,7 +40,8 @@ class AddUserModal extends React.Component {
       lastName: this.state.lastName,
       gender: this.state.gender,
       email: this.state.email,
-      location: this.state.locationId
+      location: this.state.locationId,
+      role: 'subAdmin'
     };
     createNew(payload)
     .then(data => {
@@ -49,10 +50,10 @@ class AddUserModal extends React.Component {
         email: '',
         firstName: '',
         lastName: '',
-        location: '',
+        locationId: '',
         gender: ''
       });
-      window.location.reload();
+      // window.location.reload();
     });
   };
 
@@ -62,10 +63,11 @@ class AddUserModal extends React.Component {
       <Fragment>
         <Modal isOpen={this.props.modal} toggle={this.props.toggle} className={this.props.className}>
           <ModalHeader style={styles.modalHeader} toggle={this.props.toggle}>
-            <h3>Add New User</h3>
+            Add New User
           </ModalHeader>
           <ModalBody style={styles.modalBody}>
-              <form onSubmit={this.onAddUser}>
+            <AlertSystem />
+              <form onSubmit={this.addNewUser}>
                 <FormGroup>
                   <InputField 
                     fieldName="firstName" 
@@ -105,7 +107,7 @@ class AddUserModal extends React.Component {
                           type="radio"
                           name="gender"
                           value="male"
-                          onChange={this.onChangeField}
+                          onChange={this.handleInputChange}
                           style={styles.radio} /> {'  '}
                         <span style={styles.ratioContainer}>Male</span>
                       </div>
@@ -114,7 +116,7 @@ class AddUserModal extends React.Component {
                           type="radio" 
                           name="gender"
                           value="female"
-                          onChange={this.onChangeField}
+                          onChange={this.handleInputChange}
                           style={styles.radio} /> {'  '} 
                         <span style={styles.ratioContainer}>Female</span>
                       </div>
@@ -125,8 +127,8 @@ class AddUserModal extends React.Component {
                   <select 
                     value={this.state.locationId}
                     style={styles.inputField} 
-                    className="form-control" name="role" 
-                    onChangeField={this.handleInputChange}>
+                    className="form-control" name="locationId" 
+                    onChange={this.handleInputChange} required>
                     <option value="">--select--</option>
                     {locations &&
                       locations.map(location => (
@@ -136,11 +138,10 @@ class AddUserModal extends React.Component {
                   </select>
                 </FormGroup>
                 <Button 
-                  type="button" 
+                  type="submit" 
                   color="primary" 
                   style={styles.addButton} 
-                  className="pull-right"
-                  onClick={this.onNewUser}>
+                  className="pull-right">
                   {isLoading ? 
                     (<span><Loader color="white"/> {' '} Adding...</span>) :
                     ("Add User")
