@@ -4,8 +4,8 @@ import {
   ADD_LOCATION_FAILURE,
   ADD_LOCATION_SUCCESS
 } from '../actionTypes';
-import { push } from 'connected-react-router';
-import { getAllLocation, addNewLocation, getLocationRooms, getLocationUsers } from '../services/locationService';
+// import { push } from 'connected-react-router';
+import { getAllLocation, addNewLocation } from '../services/locationService';
 import { startLoading, stopLoading, triggerAlert } from '../actions/index';
 
 export const addNew = payload => {

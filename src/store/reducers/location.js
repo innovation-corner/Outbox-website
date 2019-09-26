@@ -1,6 +1,5 @@
 import { 
     GET_ALL_LOCATION, 
-    ADD_NEW_LOCATION, 
     ADD_LOCATION_SUCCESS
 } from '../actionTypes';
 
@@ -22,7 +21,7 @@ export const locationReducer = (state = locationState, action) => {
         case ADD_LOCATION_SUCCESS:
             return {
                 ...state,
-                locationDetails: payload
+                locations: state.locations.concat(payload)
             }
         default: 
             return state; 

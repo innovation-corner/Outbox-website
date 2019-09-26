@@ -10,7 +10,7 @@ import {
 import InputField from '../../Reuse/InputField/InputField';
 import { Loader } from '../../Reuse/Loader';
 import AlertSystem from '../../Reuse/AlertSystem';
-import { validatePassword, validateEmail } from '../../../utils/regexValidation';
+// import { validatePassword, validateEmail } from '../../../utils/regexValidation';
 import { styles } from '../AddUserModal/styles'
 
 class AddLocationModal extends React.Component {
@@ -53,7 +53,6 @@ class AddLocationModal extends React.Component {
         locationAddress: '',
         admin: ''
       });
-      window.location.reload();
     });
   };
 

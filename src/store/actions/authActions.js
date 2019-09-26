@@ -4,10 +4,9 @@ import {
   LOGIN_FAILURE,
   LOGIN_SUCCESS,
   RESET,
-  VERIFY_USER
 } from '../actionTypes';
 import { push } from 'connected-react-router';
-import { registerService, loginService, verifyEmail } from '../services/authService';
+import { registerService, loginService } from '../services/authService';
 import { startLoading, stopLoading, triggerAlert } from '../actions/index';
 import { setCookie } from '../../utils/cookies';
 
@@ -68,24 +67,6 @@ export const login = data => {
     .catch(error => {
       dispatch(stopLoading()); 
       dispatch({ type: LOGIN_FAILURE });
-    });
-  }
-};
-
-export const verifyUser = token => {
-  return (dispatch, getState) => {
-    dispatch(startLoading())
-    verifyEmail(token).then(response => {
-      if (response.success) { 
-        dispatch(stopLoading());
-        dispatch({type: VERIFY_USER, payload: true});
-        dispatch(push('/'));
-      } else {
-        dispatch(stopLoading()); 
-      }
-    })
-    .catch(error => {
-      dispatch(stopLoading()); 
     });
   }
 };

@@ -1,7 +1,6 @@
 import { 
     GET_ALL_USERS,
     ADD_USER_SUCCESS,
-    ADD_USER_FAILURE
 } from '../actionTypes';
 
 const usersState = {
@@ -18,7 +17,8 @@ export const usersReducer = (state = usersState, action) => {
             };
         case ADD_USER_SUCCESS:
             return {
-                ...state
+                ...state,
+                users: state.users.concat(payload)
             };
         default: 
             return state; 
