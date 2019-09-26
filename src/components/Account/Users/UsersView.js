@@ -4,9 +4,7 @@ import classnames from 'classnames';
 import LayoutView from '../Layout/LayoutView';
 import { ContentContainer } from '../../Reuse/ContentContainer';
 import AddUserModal from '../../modals/AddUserModal/AddUserModal';
-import { 
-    IoIosAdd
-} from 'react-icons/io';
+import { IoIosAdd, IoIosFolderOpen } from 'react-icons/io';
 import User from '../../../assets/images/user-1.png';
 import { Loader } from '../../Reuse/Loader';
 import './styles.scss';
@@ -81,7 +79,7 @@ class UsersView extends Component {
                         </Col>
                         <Col sm="6" className="">
                             <Button className="pull-right add-btn" size="lg" onClick={this.toggleModal}>
-                                Add Users {" "}<IoIosAdd />
+                                New User {" "}<IoIosAdd />
                             </Button>
                         </Col>
                     </Row>
@@ -100,12 +98,18 @@ class UsersView extends Component {
                             <Row>
                                 <Col sm="12">
                                     { users.length === 0 ?
-                                        (<p style={{textAlign: 'center'}}>No users found</p>) :
+                                        (<div style={{textAlign: 'center'}}>
+                                            <IoIosFolderOpen style={{fontSize: '70px', color: '#7540EE'}}/><br/>
+                                            <h3>No Users</h3>
+                                            <p>Use the new user button to create a new users for your business.</p> 
+                                            <Button style={{backgroundColor: '#7540EE'}} className="add-btn" size="sm" onClick={this.toggleModal}><IoIosAdd />{" "} Add Users </Button>
+                                        </div>
+                                        ) :
                                         (
                                             this.state.payloadLoading ? 
-                                            (<p style={{textAlign: 'center'}}><Loader color="blue" /></p>) :
+                                            (<div style={{textAlign: 'center'}}><Loader color="blue" /></div>) :
                                             (
-                                                <Table hover>
+                                                <Table>
                                                     <thead className="table-head">
                                                         <tr>
                                                             <th></th>
@@ -116,13 +120,17 @@ class UsersView extends Component {
                                                             <th></th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody >
+                                                    <tbody>
                                                         {users &&
                                                         users.map(user => (
                                                             <tr key={user.id}>
                                                                 <td><Input type="checkbox" name="gender"/></td>
-                                                                <td>{`${user.firstName} ${user.lastName}`}</td>
+                                                                <td>
+                                                                    <img src={User} alt="user-phone" />
+                                                                    <span style={{padding: '10px'}}>{`${user.firstName} ${user.lastName}`}</span>
+                                                                </td>
                                                                 <td>{user.email}</td>
+                                                                <td></td>
                                                                 <td></td>
                                                                 <td></td>
                                                             </tr>
@@ -138,7 +146,12 @@ class UsersView extends Component {
                         <TabPane tabId="2">
                             <Row>
                                 <Col sm="12">
-                                    <p style={{textAlign: 'center'}}>No users found</p>
+                                    <div style={{textAlign: 'center'}}>
+                                        <IoIosFolderOpen style={{fontSize: '70px', color: '#7540EE'}}/><br/>
+                                        <h3>No Users</h3>
+                                        <p>Use the new user button to create a new users for your business.</p> 
+                                        <Button style={{backgroundColor: '#7540EE'}} className="add-btn" size="sm" onClick={this.toggleModal}><IoIosAdd />{" "} Add Users </Button>
+                                    </div>
                                 </Col>
                             </Row>
                         </TabPane>

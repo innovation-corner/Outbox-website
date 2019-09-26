@@ -43,6 +43,7 @@ class AddUserModal extends React.Component {
       location: this.state.locationId,
       role: 'subAdmin'
     };
+    console.log(payload)
     createNew(payload)
     .then(data => {
       this.setState({
@@ -53,7 +54,6 @@ class AddUserModal extends React.Component {
         locationId: '',
         gender: ''
       });
-      // window.location.reload();
     });
   };
 
@@ -132,7 +132,7 @@ class AddUserModal extends React.Component {
                     <option value="">--select--</option>
                     {locations &&
                       locations.map(location => (
-                        <option value={location.id}>{location.name}</option>
+                        <option key={location.id} value={location.id}>{location.name}</option>
                       ))
                     }
                   </select>

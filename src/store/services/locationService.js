@@ -1,4 +1,4 @@
-import { postFunc, singlePostFunc, putFunc, getFunc } from "./httpService";
+import { postFunc, putFunc, getFunc } from "./httpService";
 
 export const getAllLocation = business_id => {
     return getFunc(`business/${business_id}/locations`);
