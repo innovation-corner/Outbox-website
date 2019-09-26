@@ -4,7 +4,7 @@ import {
     ADD_USER_FAILURE,
     ADD_USER_SUCCESS
   } from '../actionTypes';
-  import { push } from 'connected-react-router';
+  // import { push } from 'connected-react-router';
   import { getAllUsers, addNewUser } from '../services/userService';
   import { startLoading, stopLoading, triggerAlert } from '../actions/index';
   

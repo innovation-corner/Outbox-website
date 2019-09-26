@@ -1,21 +1,37 @@
 import React, { Fragment, Component } from 'react';
-import { connect } from 'react-redux';
-import { verifyUser } from '../../store/actions/authActions';
+import { verifyEmail } from '../../store/services/authService';
 
 class ConfirmationView extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isVerified: false
+        };
+    };
+
     componentDidMount() {
+        alert("hello");
         const { token } = this.props.match.params;
-        const { onVerifyUser } = this.props;
-        onVerifyUser(token);
+        verifyEmail(token)
+        .then(response => {
+            console.log(response);
+            this.setState({
+                isVerified: true
+            });
+        })
+        .catch(error => {
+            console.log(error);
+        })
     };
 
     render() {
-        const { isVerified } = this.props;
         return (
             <Fragment>
                 <div>
-                    {isVerified && 
-                        (<p>Your email has been verified successfully. Redirecting in 3</p>)
+                    {
+                        !this.state.isVerified ?
+                        <p>Verifying your email. Please wait...</p> :
+                        <p>Email verified successfully.</p>
                     }
                 </div>
             </Fragment>
@@ -23,12 +39,4 @@ class ConfirmationView extends Component {
     }
 };
 
-const mapStateToProps = state => ({
-    isVerified: state.auth.isVerified
-});
-
-const mapDispatchToProps = dispatch => ({
-    onVerifyUser: (token) => dispatch(verifyUser(token))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ConfirmationView);
+export default ConfirmationView;

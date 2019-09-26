@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import classNames from 'classnames';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { 
     Card, 
@@ -127,11 +126,11 @@ class LocationCard extends React.Component {
                                     </div>
                                     <div style={styles.inner}>
                                         <p style={styles.innerIcon}><FaStoreAlt /> {" "}</p>
-                                        <p style={styles.cardParagraph}>{rooms} Meeting Rooms</p>
+                                        <p style={styles.cardParagraph}>{rooms.length} Meeting Rooms</p>
                                     </div>
                                     <div style={styles.inner}>
                                         <p style={styles.innerIcon}>
-                                            <img src={User2} />
+                                            <img src={User2} alt="user-phone"/>
                                         </p>
                                         <p style={styles.cardParagraph}>{user}</p>
                                     </div>
@@ -149,7 +148,7 @@ LocationCard.propTypes = {
     name: PropTypes.string.isRequired,
     address: PropTypes.string.isRequired,
     user: PropTypes.string.isRequired,
-    rooms: PropTypes.number.isRequired
+    rooms: PropTypes.array.isRequired
 };
 
 export default LocationCard;
