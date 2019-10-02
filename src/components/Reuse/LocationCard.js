@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { 
     Card, 
     Dropdown, 
@@ -99,7 +100,7 @@ class LocationCard extends React.Component {
     };
       
     render() {
-        const { user, rooms, name, address } = this.props;
+        const { user, rooms, name, address, id, push } = this.props;
         return (
             <Fragment>
                 <div className="col-md-3">
@@ -115,6 +116,7 @@ class LocationCard extends React.Component {
                                         <DropdownMenu>
                                             <DropdownItem>Edit Location</DropdownItem>
                                             <DropdownItem>Delete Location</DropdownItem>
+                                            <DropdownItem><Link to={`/home/location/${id}`}>View Details</Link></DropdownItem>
                                             <DropdownItem>Reschedule</DropdownItem>
                                         </DropdownMenu>
                                     </Dropdown>

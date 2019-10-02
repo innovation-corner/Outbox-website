@@ -4,6 +4,7 @@ import {
     UPDATE_ALERT,
     ACTIVE_MENU
 } from '../actionTypes';
+import { push } from 'connected-react-router';
 
 export const startLoading = () => ({ 
     type: START_LOADING 

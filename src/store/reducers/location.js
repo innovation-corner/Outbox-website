@@ -1,6 +1,8 @@
 import { 
     GET_ALL_LOCATION, 
-    ADD_LOCATION_SUCCESS
+    ADD_LOCATION_SUCCESS,
+    GET_LOCATION_ROOMS,
+    GET_LOCATION_DETAILS
 } from '../actionTypes';
 
 const locationState = {
@@ -22,6 +24,16 @@ export const locationReducer = (state = locationState, action) => {
             return {
                 ...state,
                 locations: state.locations.concat(payload)
+            }
+        case GET_LOCATION_DETAILS:
+            return {
+                ...state,
+                locationDetails: payload
+            }
+        case GET_LOCATION_ROOMS:
+            return {
+                ...state,
+                locationRooms: payload
             }
         default: 
             return state; 

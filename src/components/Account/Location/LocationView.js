@@ -40,7 +40,7 @@ class LocationView extends Component {
     };
 
     render() {
-        const { addNew, isLoading, locations, businessId } = this.props;
+        const { addNew, isLoading, locations, businessId, push } = this.props;
         return (
             <LayoutView>
                 <AddLocationModal 
@@ -83,6 +83,8 @@ class LocationView extends Component {
                                             address={location.address}
                                             user=""
                                             rooms={[]}
+                                            id={location.id}
+                                            push={route => push(route)}
                                         />
                                     ))}
                                 </Row>

@@ -14,7 +14,7 @@ class Location extends Component {
             onReset, 
             getLocations,
             allLocations,
-            businessId
+            businessId,
         } = this.props;
         return (
             <LocationView 
@@ -34,14 +34,14 @@ const mapStateToProps = state => ({
     allLocations: state.location.locations,
     locationDetails: state.location.locationDetails,
     isLoading: state.auth.isLoading,
-    businessId: state.auth.userData.businessId
+    businessId: state.auth.userData.businessId,
 });
 
 const mapDispatchToProps = dispatch => ({
     toggleMenu: (payload) => dispatch(switchActiveMenu(payload)),
     addNewLocation: (payload) => dispatch(addNew(payload)),
     onReset: () => dispatch(reset()),
-    getLocations: () => dispatch(getAll())
+    getLocations: () => dispatch(getAll()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Location);

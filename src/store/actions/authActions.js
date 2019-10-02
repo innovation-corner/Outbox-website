@@ -44,7 +44,7 @@ export const register = payload => {
   }
 };
 
-export const login = data => {
+export const login = (data) => {
   return (dispatch, getState) => {
     dispatch(startLoading())
     return loginService(data).then(response => {

@@ -19,3 +19,7 @@ export const getLocationUsers = id => {
 export const getLocationRooms = id => {
     return getFunc(`location/${id}/rooms`);
 };
+
+export const getDetails = (location_id, business_id) => {
+    return getFunc(`location/${location_id}`);
+};
